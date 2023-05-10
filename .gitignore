@@ -35,3 +35,8 @@ yarn-error.log*
 next-env.d.ts
 
 .vercel
+
+# Secret file
+.env
+.env.local
+.env.development
