@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <main className="min-h-screen">
       <Header/>
-      <div className="flex flex-col px-12">
+      <div className="flex flex-col">
       <CustomerCard />
       <Section name="Orders"/>
       <Section name="Recommendations"/>
