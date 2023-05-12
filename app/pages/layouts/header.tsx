@@ -10,7 +10,7 @@ return(
     <h1 className="flex grow capitalize ms-4 my-auto">GK-Software</h1>
         <Image
             className="mr-4"
-            src="/../../favicon.ico"
+            src="/vercel.svg"
             alt="Picture of next SVG"
             width={48}
             height={48}
