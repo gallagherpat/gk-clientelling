@@ -10,9 +10,9 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url = env("POSTGRES_PRISMA_URL") // uses connection pooling
-  directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
-  shadowDatabaseUrl = env("POSTGRES_URL_NON_POOLING") // used for migrations
+  url = env("POSTGRES_URL") // uses connection pooling
+  // directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
+  // shadowDatabaseUrl = env("POSTGRES_URL_NON_POOLING") // used for migrations
 }
 
 model User {
@@ -21,13 +21,12 @@ model User {
   email     String   @unique
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  basket    UsersBasket[]
 }
 
 model Customer {
   id    Int     @id @default(autoincrement())
   name  String
-  items Items[]
-  orders Basket[]
 }
 
 model Items {
@@ -38,15 +37,33 @@ model Items {
   shortDescription    String
   longDescription     String
   url                 String
-  basket              Basket @relation(fields: [basketId], references: [id])
-  basketId            Int
-  customer            Customer @relation(fields: [customerId], references: [id])
-  customerId          Int
+  basket ItemsInBasket[]
 }
 
 model Basket {
-  id    Int       @id @default(autoincrement())
-  items Items[]
-  cust Customer   @relation(fields: [custID], references: [id])
-  custID Int
+  id Int @id @default(autoincrement())
+  items ItemsInBasket[]
+  user UsersBasket[]
+  }
+
+model ItemsInBasket {
+  product   Items   @relation(fields: [productID], references: [itemID])
+  productID String
+  basket    Basket  @relation(fields: [basketID], references: [id])
+  basketID  Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@id([productID, basketID])
+}
+
+model UsersBasket {
+  user  User @relation(fields: [userID], references: [id])
+  userID Int
+  basket Basket @relation(fields: [basketID], references: [id])
+  basketID Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@id([userID, basketID])
 }
