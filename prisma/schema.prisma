@@ -22,3 +22,31 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
+model Customer {
+  id    Int     @id @default(autoincrement())
+  name  String
+  items Items[]
+  orders Basket[]
+}
+
+model Items {
+  itemID              String @id @unique
+  price               Float
+  receiptText         String
+  registrationNumber  String
+  shortDescription    String
+  longDescription     String
+  url                 String
+  basket              Basket @relation(fields: [basketId], references: [id])
+  basketId            Int
+  customer            Customer @relation(fields: [customerId], references: [id])
+  customerId          Int
+}
+
+model Basket {
+  id    Int       @id @default(autoincrement())
+  items Items[]
+  cust Customer   @relation(fields: [custID], references: [id])
+  custID Int
+}

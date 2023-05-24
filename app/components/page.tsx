@@ -5,13 +5,10 @@ import Rec from "./rec";
 //@ts-ignore
 function Page(props){
     const [isAnimated, setAnimation] = useState(true);
-    console.log(isAnimated);
+    // console.log(isAnimated);
     function pageHandler(){
         setAnimation(false);
-        if(isAnimated === false){
-            console.log("Help")
-        }
-        console.log(isAnimated);
+        // console.log(isAnimated);
         setTimeout(props.setPageIsOpen, 275)
     }
     // function animator(){
