@@ -1,4 +1,15 @@
+"use client"
+import { useState } from "react";
+import Modal from "./modal";
+import Image from "next/image";
+import Backdrop from "./backDrop";
 function Rec(){
+    const [isModalOpen, setModalOpen] = useState(false);
+    function modalHandler(){
+        (isModalOpen) ? setModalOpen(!isModalOpen) : setModalOpen(!isModalOpen)
+        // console.log(isModalOpen);
+        return isModalOpen
+    }
     const items =  [
         {
             "itemID": 535322441,
@@ -30,14 +41,20 @@ function Rec(){
         {
             "itemID": 535322413,
             "price": 24.00,
-            "receiptText": "Training Mesh Running Cap",
-            "registrationNumber": 53532241300000,
+            "receiptText": "Training Mesh Running Cap",            "registrationNumber": 53532241300000,
             "shortDescription": "Light weight, and breathable running cap.",
             "longDescription": "I enjoy all of the different exciting gins in the world and want to try them all",
             "url": "abouriou-nature-vin-de-france-2018-case-936848"
         }
     ]
-    let cards =  items.map((item) => <button key={item.itemID} className="border-2 rounded-md min-h-fit p-2 mix-blend-normal bg-white">
+    let cards =  items.map((item) => <button key={item.itemID} className="border-2 rounded-md min-h-fit p-2 mix-blend-normal bg-white" onClick={modalHandler}>
+        <Image
+            className="my-4"
+            src='/placeholder.png'
+            alt='Placeholder'
+            width={128}
+            height={128}
+        />
     <h3 className="text-sm text-left font-bold">{item.receiptText}</h3>
     <p className="text-xs text-left font-thin indent-1">afterpay</p>
     <p className="text-xs text-left ml-1">{item.shortDescription}</p>
@@ -45,6 +62,9 @@ function Rec(){
     return (
         <div id="gridHeader" className="grid grid-cols-2 gap-2 mt-2 mx-4">
             {cards}
+
+            {isModalOpen && <Modal setModal={modalHandler}/>}
+            {isModalOpen && <Backdrop setModal={modalHandler}/>}
         </div>
     );
 }
