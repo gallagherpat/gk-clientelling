@@ -1,11 +1,15 @@
+"use client"
 import Section from "./components/section"
-import Header from "./pages/layouts/header"
-import CustomerCard from "./pages/layouts/cust-card"
+import Header from "./layouts/header"
+import CustomerCard from "./layouts/cust-card"
 
 
+const fetcher = (url:string) => fetch(url).then((res) => res.json())
 
 export default function Home() {
 
+  //@ts-ignore
+  
   return (
     <main className="min-h-screen">
       <Header/>
@@ -15,8 +19,10 @@ export default function Home() {
       <Section name="Recommendations"/>
       <Section name="Past Purchases"/>
       <Section name="Wish List"/>
+      {/* <button className="bg-" onClick={createUser}>Create user</button> */}
+
+
       </div>
     </main>
   )
 }
-

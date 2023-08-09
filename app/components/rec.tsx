@@ -49,7 +49,7 @@ function Rec(){
     ]
     let cards =  items.map((item) => <button key={item.itemID} className="border-2 rounded-md min-h-fit p-2 mix-blend-normal bg-white" onClick={modalHandler}>
         <Image
-            className="my-4"
+            className="mx-auto my-6"
             src='/placeholder.png'
             alt='Placeholder'
             width={128}
