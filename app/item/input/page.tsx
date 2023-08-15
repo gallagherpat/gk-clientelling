@@ -1,4 +1,3 @@
-//@ts-nocheck
 import { PrismaClient } from "@prisma/client"
 import Header from "@/app/layouts/header";
 
@@ -16,9 +15,10 @@ export default function Page(){
   async function newItem(data: FormData) {
     "use server"
     const prisma = new PrismaClient();
+    let oPrice: string | undefined | null = data.get('receiptText')?.toString();
     const item: item = await {
       itemID: data.get('itemID')?.toString(),
-      price: parseFloat(data.get('price')),
+      price: parseFloat(oPrice ?? ''),
       receiptText: data.get('receiptText')?.toString(),
       registrationNumber: data.get('registrationNumber')?.toString(),
       shortDescription: data.get('shortDescription')?.toString(),
