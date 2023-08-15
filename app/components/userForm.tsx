@@ -7,6 +7,15 @@ function UserForm(){
 
         console.log(data.get('name'));
         console.log(data.get('email'));
+
+    const createUser = await prisma.user.create({
+        data:{
+         name: JSON.stringify(data.get('name')),
+         email: JSON.stringify(data.get('email')),
+         createdAt: new Date()
+        }
+    });
+
     }
 
     return(     

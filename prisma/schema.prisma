@@ -26,7 +26,8 @@ model User {
 
 model Customer {
   id    Int     @id @default(autoincrement())
-  name  String
+  name  String  @unique
+  items Items[]
 }
 
 model Items {
@@ -38,6 +39,8 @@ model Items {
   longDescription     String
   url                 String
   basket ItemsInBasket[]
+  customer Customer          @relation(fields: [item], references: [id], onDelete: Cascade)
+  item                Int @default(autoincrement())
 }
 
 model Basket {
