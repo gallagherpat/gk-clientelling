@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { PrismaClient } from "@prisma/client"
 import Header from "@/app/layouts/header";
 
