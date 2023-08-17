@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client"
+import { PrismaClient, Prisma } from "@prisma/client"
 import Header from "@/app/layouts/header";
 
 export default function Page(){
@@ -13,6 +13,7 @@ export default function Page(){
     customer?: number
   }
   async function newItem(data: FormData) {
+    //Work dammit
     "use server"
     const prisma = new PrismaClient();
     let oPrice: string | undefined | null = data.get('receiptText')?.toString();
@@ -26,17 +27,27 @@ export default function Page(){
       url: data.get('url')?.toString(),
     }
     console.log(item);
-    console.log(typeof item.price)
-    const createItem = await prisma.customer.update({
-      where: {
-        id: 4
-      },
-      data: {
-        items: {
-          create: item
+    console.log(typeof item.price);
+    try{
+      const createItem = await prisma.customer.update({
+        where: {
+          id: 4
+        },
+        data: {
+          items: {
+            create:[
+              item
+            ] as Prisma.ItemsCreateWithoutCustomerInput[]
+          }
         }
-      }
-    })
+      })
+      console.log('Item created', createItem);
+    }catch(error){
+      console.error('Error creating item:', error);
+    }finally{
+      await prisma.$disconnect();
+    }
+    
   //   const createItem = await prisma.customer.create({
   //     data: {
   //       name: "Sheetz",
