@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client"
+import { PrismaClient, Prisma } from "@prisma/client"
 import Header from "@/app/layouts/header";
 
 export default function Page(){
@@ -33,7 +33,9 @@ export default function Page(){
       },
       data: {
         items: {
-          create: item
+          create:[
+            item
+          ] as Prisma.ItemsCreateWithoutCustomerInput[]
         }
       }
     })
