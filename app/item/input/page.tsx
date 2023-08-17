@@ -13,6 +13,7 @@ export default function Page(){
     customer?: number
   }
   async function newItem(data: FormData) {
+    //Work dammit
     "use server"
     const prisma = new PrismaClient();
     let oPrice: string | undefined | null = data.get('receiptText')?.toString();
