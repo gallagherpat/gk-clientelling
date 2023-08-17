@@ -26,19 +26,25 @@ export default function Page(){
       url: data.get('url')?.toString(),
     }
     console.log(item);
-    console.log(typeof item.price)
-    const createItem = await prisma.customer.update({
-      where: {
-        id: 4
-      },
-      data: {
-        items: {
-          create:[
-            item
-          ] as Prisma.ItemsCreateWithoutCustomerInput[]
+    console.log(typeof item.price);
+    try{
+      const createItem = await prisma.customer.update({
+        where: {
+          id: 4
+        },
+        data: {
+          items: {
+            create:[
+              item
+            ] as Prisma.ItemsCreateWithoutCustomerInput[]
+          }
         }
-      }
-    })
+      })
+      console.log('Item created', createItem);
+    }catch(error){
+      console.error('Error creating item:', error);
+    }
+    
   //   const createItem = await prisma.customer.create({
   //     data: {
   //       name: "Sheetz",
