@@ -43,6 +43,8 @@ export default function Page(){
       console.log('Item created', createItem);
     }catch(error){
       console.error('Error creating item:', error);
+    }finally{
+      await prisma.$disconnect();
     }
     
   //   const createItem = await prisma.customer.create({
