@@ -1,7 +1,5 @@
 "use client"
 import { useState } from "react";
-import Modal from "./modal";
-import Backdrop from "./backDrop";
 import Page from "./page";
 
 //@ts-ignore
