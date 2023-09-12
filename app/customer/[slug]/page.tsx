@@ -3,6 +3,7 @@
 import Section from '@/app/components/section';
 import Header from '@/app/layouts/header';
 import CustomerCard from '@/app/layouts/cust-card';
+import { Suspense } from 'react';
 
 async function getData() {
   const myHeaders = new Headers;
@@ -28,7 +29,9 @@ export default async function Page({params}: {params:{slug: string}}){
   <Header name={params.slug} memberName={data?.data[0].firstName + ' ' + data?.data[0].lastName}/>
   <div>Test: {params.slug}</div>
   <div className="flex flex-col">
-  <CustomerCard member={data?.data[0]}/>
+  <Suspense fallback={<div>Loading...</div>}>
+    <CustomerCard member={data?.data[0]}/>
+  </Suspense>
   <Section name="Orders"/>
   <Section name="Recommendations"/>
   <Section name="Past Purchases"/>

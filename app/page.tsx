@@ -2,6 +2,8 @@
 import Section from "./components/section"
 import Header from "./layouts/header"
 import CustomerCard from "./layouts/cust-card"
+import { Suspense } from 'react';
+
 
 async function getData() {
   const myHeaders = new Headers;
@@ -27,7 +29,9 @@ export default async function Home() {
     <main className="min-h-screen">
       <Header/>
       <div className="flex flex-col">
-      <CustomerCard member={data?.data[0]}/>
+      <Suspense fallback={<div>Loading...</div>}>
+        <CustomerCard member={data?.data[0]}/>
+      </Suspense>
       <Section name="Orders"/>
       <Section name="Recommendations"/>
       <Section name="Past Purchases"/>
