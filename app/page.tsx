@@ -5,25 +5,34 @@ import CustomerCard from "./layouts/cust-card"
 import { Suspense } from 'react';
 
 
-async function getData() {
-  const myHeaders = new Headers;
-  myHeaders.append("Content-type", "application/json");
+// async function getData() {
+//   const myHeaders = new Headers;
+//   myHeaders.append("Content-type", "application/json");
 
-  const req = await fetch(`http://localhost:3000/api/dummy/get/member`, {
-    method: 'GET',
-    headers: myHeaders,
-    redirect: 'follow',
-    cache: 'no-store'
-  })
-  if(!req.ok) {
-    throw new Error('Failed to fetch')
-  }
-  return req.json()
-}
+//   const req = await fetch(`./api/dummy/get/member`, {
+//     method: 'GET',
+//     headers: myHeaders,
+//     redirect: 'follow',
+//     cache: 'no-store'
+//   })
+//   if(!req.ok) {
+//     throw new Error('Failed to fetch')
+//   }
+//   return req.json()
+// }
 
 
 export default async function Home() {
-  const data = await getData()
+  const data ={
+    "data":[{
+                "id": "400117",
+                "firstName": 'Victoria',
+                "lastName": 'Smith',
+                "points": "300",
+                'rewards': ['20% off'],
+                "preferences": ['hello', 'world'],
+            }]
+        }
   
   return (
     <main className="min-h-screen">
