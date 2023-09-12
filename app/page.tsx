@@ -3,18 +3,31 @@ import Section from "./components/section"
 import Header from "./layouts/header"
 import CustomerCard from "./layouts/cust-card"
 
+async function getData() {
+  const myHeaders = new Headers;
+  myHeaders.append("Content-type", "application/json");
 
-const fetcher = (url:string) => fetch(url).then((res) => res.json())
+  const req = await fetch(`http://localhost:3000/api/dummy/get/member`, {
+    method: 'GET',
+    headers: myHeaders,
+    redirect: 'follow',
+    cache: 'no-store'
+  })
+  if(!req.ok) {
+    throw new Error('Failed to fetch')
+  }
+  return req.json()
+}
 
-export default function Home() {
 
-  //@ts-ignore
+export default async function Home() {
+  const data = await getData()
   
   return (
     <main className="min-h-screen">
       <Header/>
       <div className="flex flex-col">
-      <CustomerCard />
+      <CustomerCard member={data?.data[0]}/>
       <Section name="Orders"/>
       <Section name="Recommendations"/>
       <Section name="Past Purchases"/>

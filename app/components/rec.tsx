@@ -1,69 +1,72 @@
+//@ts-nocheck
 "use client"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Modal from "./modal";
-import Image from "next/image";
 import Backdrop from "./backDrop";
-function Rec(){
+
+function Rec(props){
+    const [items, updateItems] = useState([]);
+    const prodReq = async function () {
+        const myHeaders = new Headers;
+        myHeaders.append("Content-type", "application/json")
+        const req = await fetch('/api/get/customer/item', {
+            method: 'POST',
+            headers: myHeaders,
+            body: JSON.stringify({customer: 'test'}),
+            redirect: "follow"
+        });
+        const res = await req.json();
+        const data = await res;
+        console.log("FETCH DATA")
+        console.log(data)
+        updateItems(data);
+    }
+    const dummyReq = async function() {
+        let endpoint = props.name.toLowerCase();
+        if(endpoint == 'wish list'){
+            endpoint = 'wish-list';
+        }else if(endpoint == 'past purchases'){
+            endpoint = 'past-purchases';
+        }
+        const myHeaders = new Headers;
+        myHeaders.append("Content-type", "application/json");
+        const req = await fetch(`/api/dummy/get/${endpoint}`, {
+            method: 'GET',
+            headers: myHeaders,
+            redirect: 'follow'
+        });  
+        const res = await req.json();
+        const data = await res;
+        console.log("FETCH DATA")
+        console.log(data.data);
+        updateItems(data.data);  
+    }
+
+    useEffect(() => {
+        dummyReq();
+    }, [])
+
     const [isModalOpen, setModalOpen] = useState(false);
     function modalHandler(){
         (isModalOpen) ? setModalOpen(!isModalOpen) : setModalOpen(!isModalOpen)
         // console.log(isModalOpen);
         return isModalOpen
     }
-    const items =  [
-        {
-            "itemID": 535322441,
-            "price": 35.00,
-            "receiptText": "Nova Shine Shopper Bag",
-            "registrationNumber": 5353224410000,
-            "shortDescription": "Take everything you need to the gym or into the city with this shopper bag.",
-            "longDescription": "I enjoy all of the different exciting Jack Daniel's in the world and want to try them all",
-            "url":"virgen-natural-malbec-2019-21987"
-        },
-        {
-            "itemID": 535322451,
-            "price": 75.00,
-            "receiptText": "Puma Street Silicone Watch",
-            "registrationNumber": 5353224510000,
-            "shortDescription": "PUMA Puma Street Three-Hand Black Silicone Watch.",
-            "longDescription": "I enjoy all of the different exciting Red wine in the world and want to try them all",
-            "url":"benaiga-natural-wine-carignan-24757"
-        },
-        {
-            "itemID": 535322431,
-            "price": 30.00,
-            "receiptText": "ProCat Duffel Bag",
-            "registrationNumber": 5353224310000,
-            "shortDescription": "Take everything you need to the gym or into the city with this duffel bag.",
-            "longDescription": "I enjoy all of the different exciting not vodkas in the world and want to try them all",
-            "url": "famille-perrin-nature-c-tes-du-rh-ne-2019-948059"
-        },
-        {
-            "itemID": 535322413,
-            "price": 24.00,
-            "receiptText": "Training Mesh Running Cap",            "registrationNumber": 53532241300000,
-            "shortDescription": "Light weight, and breathable running cap.",
-            "longDescription": "I enjoy all of the different exciting gins in the world and want to try them all",
-            "url": "abouriou-nature-vin-de-france-2018-case-936848"
-        }
-    ]
-    let cards =  items.map((item) => <button key={item.itemID} className="border-2 rounded-md min-h-fit p-2 mix-blend-normal bg-white" onClick={modalHandler}>
-        <Image
-            className="mx-auto my-6"
-            src='/placeholder.png'
-            alt='Placeholder'
-            width={128}
-            height={128}
-        />
-    <h3 className="text-sm text-left font-bold">{item.receiptText}</h3>
-    <p className="text-xs text-left font-thin indent-1">afterpay</p>
-    <p className="text-xs text-left ml-1">{item.shortDescription}</p>
-    </button>)
+
+    let cards = items.map((item) => <div key={item.itemID}>
+        <button className="border-2 rounded-md min-h-fit p-2 mix-blend-normal bg-white" onClick={modalHandler}>
+            <img height={128} width={128} className="mx-auto py-6" src={item.url} alt="" />
+        <h3 className="text-sm text-left font-bold">{item.receiptText}</h3>
+        <p className="text-xs text-left font-thin indent-1">afterpay</p>
+        <p className="text-xs text-left ml-1">{item.price}</p>
+        </button>
+        {isModalOpen && <Modal item={item} setModal={modalHandler}/>}
+    </div>
+
+    )
     return (
         <div id="gridHeader" className="grid grid-cols-2 gap-2 mt-2 mx-4">
             {cards}
-
-            {isModalOpen && <Modal setModal={modalHandler}/>}
             {isModalOpen && <Backdrop setModal={modalHandler}/>}
         </div>
     );

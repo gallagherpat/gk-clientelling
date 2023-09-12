@@ -1,40 +1,42 @@
 "use client"
+//@ts-nocheck
 import Section from '@/app/components/section';
 import Header from '@/app/layouts/header';
 import CustomerCard from '@/app/layouts/cust-card';
 
-export default function Page({params}: {params:{slug: string}}){
-  console.log(params);
-    async function newUser() {
-      const req = await fetch('/api/newuser', {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify({
-          name: 'Victoria Smith',
-          email: 'victoria@email.com'
-        })
-      });
-      const res = await req.json();
-      const data = await res;
-      console.log(data);
-    }
+async function getData() {
+  const myHeaders = new Headers;
+  myHeaders.append("Content-type", "application/json");
 
-    return (
-        <main className="min-h-screen">
-          <Header name={params.slug}/>
-          <div>Test: {params.slug}</div>
-          <div className="flex flex-col">
-          <CustomerCard />
-          <Section name="Orders"/>
-          <Section name="Recommendations"/>
-          <Section name="Past Purchases"/>
-          <Section name="Wish List"/>
-          <button className='bg-blue-400 px-3 py-4 m-3 rounded-md' onClick={newUser}>New user</button>
-          </div>
-        </main>
-      )
+  const req = await fetch(`http://localhost:3000/api/dummy/get/member`, {
+    method: 'GET',
+    headers: myHeaders,
+    redirect: 'follow',
+    cache: 'no-store'
+  })
+  if(!req.ok) {
+    throw new Error('Failed to fetch')
+  }
+  return req.json()
 }
+
+export default async function Page({params}: {params:{slug: string}}){
+  const data = await getData()
+  console.log(data.data.firstName);
+  console.log(data.data);
+  return (<main className="min-h-screen">
+  <Header name={params.slug} memberName={data?.data[0].firstName + ' ' + data?.data[0].lastName}/>
+  <div>Test: {params.slug}</div>
+  <div className="flex flex-col">
+  <CustomerCard member={data?.data[0]}/>
+  <Section name="Orders"/>
+  <Section name="Recommendations"/>
+  <Section name="Past Purchases"/>
+  <Section name="Wish List"/>
+  <div>Hello</div>
+  </div>
+</main>)
+}
+
 
 

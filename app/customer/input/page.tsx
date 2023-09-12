@@ -23,7 +23,7 @@ export default function Home() {
         const prisma = new PrismaClient;
         //@ts-ignore
         const inputName: string = data.get('name')?.toString();
-
+      
         console.log(data.get('name'));
         const createCustomer = await prisma.customer.deleteMany({
            where: {name: {

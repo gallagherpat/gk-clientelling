@@ -16,7 +16,7 @@ export default function Page(){
     //Work dammit
     "use server"
     const prisma = new PrismaClient();
-    let oPrice: string | undefined | null = data.get('receiptText')?.toString();
+    let oPrice: string | undefined | null = data.get('price')?.toString();
     const item: item = await {
       itemID: data.get('itemID')?.toString(),
       price: parseFloat(oPrice ?? ''),

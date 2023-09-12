@@ -23,7 +23,7 @@ function Page(props){
                 <p id="page-name" className="ml-2">{props.name}</p>
             </h1>
         </header>
-        <Rec/>
+        <Rec name={props.name}/>
     </div>)
 
 }
