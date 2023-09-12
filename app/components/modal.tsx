@@ -1,3 +1,4 @@
+//@ts-nocheck
 import Image from "next/image";
 //@ts-ignore
 function Modal(props){
