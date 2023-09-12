@@ -4,7 +4,7 @@ export default function CustomerCard(props){
     const member = props?.member
     const preferences = member.preferences;
     const rewards = member.rewards;
-    console.log(member)
+    // console.log(member)
     return(
     <div id="cust-info-long" className="place-content-center mx-6 my-3 drop-shadow-lg rounded-md flex justify-center bg-white text-lg">
 

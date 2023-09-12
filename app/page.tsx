@@ -46,8 +46,6 @@ export default async function Home() {
       <Section name="Past Purchases"/>
       <Section name="Wish List"/>
       {/* <button className="bg-" onClick={createUser}>Create user</button> */}
-
-
       </div>
     </main>
   )

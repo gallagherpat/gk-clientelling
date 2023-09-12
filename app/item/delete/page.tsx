@@ -16,14 +16,14 @@ export default function Page(){
     //Work dammit
     "use server"
     const prisma = new PrismaClient();
-    console.log(data.get('itemID')?.toString());
+    // console.log(data.get('itemID')?.toString());
     try{
       const createItem = await prisma.items.delete({
         where: {
           itemID: data.get('itemID')?.toString()
         }
       })
-      console.log('Item deleted', createItem);
+      // console.log('Item deleted', createItem);
     }catch(error){
       console.error('Error deleting item:', error);
     }finally{

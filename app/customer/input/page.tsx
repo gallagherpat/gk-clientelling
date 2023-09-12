@@ -11,7 +11,7 @@ export default function Home() {
         //@ts-ignore
         const inputName: string = data.get('name')?.toString();
 
-        console.log(data.get('name'));
+        //console.log(data.get('name'));
         const createCustomer = await prisma.customer.create({
         data:{
          name: inputName,
@@ -24,7 +24,7 @@ export default function Home() {
         //@ts-ignore
         const inputName: string = data.get('name')?.toString();
       
-        console.log(data.get('name'));
+        // console.log(data.get('name'));
         const createCustomer = await prisma.customer.deleteMany({
            where: {name: {
             contains: inputName

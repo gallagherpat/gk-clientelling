@@ -6,7 +6,7 @@ import * as React from 'react';
 //@ts-ignore
 export default function Header(props){
 let memberName = props.memberName;
-console.log(props)
+// console.log(props)
 let logoPath = "/" + props.name + ".png"
 if(!props.name){
 logoPath = "/GK_Software_logo.png";

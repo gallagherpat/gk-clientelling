@@ -17,16 +17,14 @@ function Rec(props){
         });
         const res = await req.json();
         const data = await res;
-        console.log("FETCH DATA")
-        console.log(data)
+        // console.log("FETCH DATA")
+        // console.log(data)
         updateItems(data);
     }
     const dummyReq = async function() {
         let endpoint = props.name.toLowerCase();
         if(endpoint == 'wish list'){
             endpoint = 'wish-list';
-        }else if(endpoint == 'past purchases'){
-            endpoint = 'past-purchases';
         }
         const myHeaders = new Headers;
         myHeaders.append("Content-type", "application/json");
@@ -37,8 +35,8 @@ function Rec(props){
         });  
         const res = await req.json();
         const data = await res;
-        console.log("FETCH DATA")
-        console.log(data.data);
+        // console.log("FETCH DATA")
+        // console.log(data.data);
         updateItems(data.data);  
     }
 

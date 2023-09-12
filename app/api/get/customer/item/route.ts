@@ -15,9 +15,9 @@ export async function POST(request: Request) {
           }
         })
     const customerData = await getCustomer
-    console.log(customerData);
+    // console.log(customerData);
     const items = await customerData?.items;
-    console.log(items);
+    // console.log(items);
 
     cookieStore.set({
         name: 'oData',
@@ -25,6 +25,6 @@ export async function POST(request: Request) {
         path: '/'
     })
 
-    console.log(res);
+    // console.log(res);
     return NextResponse.json(items);
 }

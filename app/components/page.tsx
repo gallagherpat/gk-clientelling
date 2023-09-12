@@ -1,19 +1,38 @@
 "use client"
 import { useState } from "react";
 import Rec from "./rec";
+import Accordian from "./accordian";
 
 //@ts-ignore
 function Page(props){
     const [isAnimated, setAnimation] = useState(true);
+    let pageType = props.name;
+    let componentType;
     // console.log(isAnimated);
     function pageHandler(){
         setAnimation(false);
         // console.log(isAnimated);
         setTimeout(props.setPageIsOpen, 275)
     }
-    // function animator(){
-    //     className = "absolute top-0 left-0 h-screen w-full rounded-xl bg-gradient-to-b from-[#D6DBDC] to-white reverse:animate-slide"
-    // }
+    //console.log(pageType);
+    
+    switch(pageType) {
+        case 'Orders':
+        componentType = <Accordian name={props.name}/>
+        break;
+        case 'Recommendations':
+        componentType = <Rec name={props.name}/>
+        break;
+        case 'Past Purchases':
+        componentType = <Accordian name={props.name}/>
+        break;
+        case 'Wish List':
+        componentType = <Rec name={props.name}/>
+        break;
+        default:
+            console.error("Bad switch");
+    }
+
     return (<div className={isAnimated ? "absolute top-0 left-0 h-screen w-full rounded-xl bg-gradient-to-b from-[#D6DBDC] to-white animate-slide" : "absolute top-0 left-0 h-screen w-full rounded-xl bg-gradient-to-b from-[#D6DBDC] to-white animate-reverseSlide"}>
         <header className="drop-shadow-lg py-4 bg-white">
             <h1 className="flex text-xl ml-4">
@@ -23,7 +42,7 @@ function Page(props){
                 <p id="page-name" className="ml-2">{props.name}</p>
             </h1>
         </header>
-        <Rec name={props.name}/>
+        {componentType}
     </div>)
 
 }

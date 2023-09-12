@@ -21,7 +21,7 @@ export default async function Test(){
         id: 4
     },
   })
-  console.log(customerData);
+// console.log(customerData);
     return(
         <main>
             <div>Hello</div>

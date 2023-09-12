@@ -7,7 +7,7 @@ function Section(props){
     const [pageIsOpen, setPageIsOpen] = useState(false)
     function pageHandler(){
         (pageIsOpen) ? setPageIsOpen(!pageIsOpen) : setPageIsOpen(!pageIsOpen);
-        console.log(pageIsOpen)
+        //console.log(pageIsOpen)
         return pageIsOpen
     }
     const name = props.name;
