@@ -74,6 +74,6 @@ function CustomerSection() {
 
   return (<>
   {customerSection}
-    {isLoad ?  <div className="hidden absolute z-50 bg-white h-screen w-full overflow-hidden"><div className="relative h-full pt-56 w-11/12 mx-auto"><img src="/GK_Software_logo.png" alt="" srcset="" /></div></div> : <div className="hidden">Hide</div>}
+    {isLoad ?  <div className="hidden absolute z-50 bg-white h-screen w-full overflow-hidden"><div className="relative h-full pt-56 w-11/12 mx-auto"><img src="/GK_Software_logo.png" alt="Logo"/></div></div> : <div className="hidden">Hide</div>}
   </>)
 }
