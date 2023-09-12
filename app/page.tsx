@@ -46,46 +46,10 @@ export default async function Home() {
       <Section name="Recommendations"/>
       <Section name="Past Purchases"/>
       <Section name="Wish List"/>
-      <Button item={80001}/>
       </div>
     </main>
   )
 }
-
-
-//@ts-ignore
-function Button(props){
-  let sItemID = props.item
-  const buttons = (<>
-  {/* <script type="text/javascript" src="/libs/AppEnablementConnector.js"></script>
-  <script type="text/javascript" src="/libs/api/Pos.js"></script> */}
-  <button 
-  className="py-2 px-4 my-2 rounded-full bg-[#222] text-[#fff] font-bold active:bg-[#6b6b6b]"
-   onClick={()=>{
-      let oAppEnablementPosInstance = new comGkSoftwareGkrAppEnablementApi.Pos();
-      console.log("click")
-      const sendRegisterItem = function(item: number){
-        console.log(item);
-        let registerLineItemRequest = JSON.stringify({
-            "itemID": item
-        });
-        oAppEnablementPosInstance.registerLineItem(registerDataOk, registerDataFailed, registerLineItemRequest);
-        }
-        function registerDataOk() {
-          console.log("Succesfully registered", "success");
-        }
-        function registerDataFailed() {
-          console.error("Data registration failed");
-        }
-        sendRegisterItem(sItemID);
-    }}>
-      Click Me
-    </button>
-  </>
-  )
-    return buttons
-}
-
 
 function CustomerSection() {
   const [oData, setData] = useState([])
@@ -110,6 +74,6 @@ function CustomerSection() {
 
   return (<>
   {customerSection}
-    {isLoad ?  <div className="absolute z-50 bg-white h-screen w-full overflow-hidden"><div className="relative h-full pt-56 w-11/12 mx-auto"><img src="/GK_Software_logo.png" alt="" srcset="" /></div></div> : <div className="hidden">Hide</div>}
+    {isLoad ?  <div className="hidden absolute z-50 bg-white h-screen w-full overflow-hidden"><div className="relative h-full pt-56 w-11/12 mx-auto"><img src="/GK_Software_logo.png" alt="" srcset="" /></div></div> : <div className="hidden">Hide</div>}
   </>)
 }

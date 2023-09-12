@@ -45,7 +45,7 @@ export default function Accordian(props){
                     <span className="flex-none">{order.status}</span>
                 </div>
             </section>
-            <OpenedAccordian id={order.orderID} index={isIndex} isAccordianOpen={isAccordianOpen} basket={order.basket}/>
+            <OpenedAccordian id={order.orderID} index={isIndex} isAccordianOpen={isAccordianOpen} basket={order.basket} endpoint={props.name}/>
         </>
     ))
     return(
@@ -57,12 +57,13 @@ export default function Accordian(props){
 
 function OpenedAccordian(props) {
     const items = props.basket;
+    const endpoint = props.endpoint;
+    const className = "w-full mt-4 py-3 bg-slate-600 rounded-lg"
     const isOpen = props.isAccordianOpen
     const id = props.id;
     const isIndex = props.index
     let total: number = 0;
     //console.log(items)
-
     items.map((item) => total += item.price)
 
 
@@ -77,9 +78,38 @@ function OpenedAccordian(props) {
     <div className="h-[1px] bg-slate-500 my-2 mx-4"></div>
     <div className="flex">
         <div className="grow">Total:</div>
-        <span>${(Math.round((total * 1.07) * 100)/100)}</span>
+        <span>${(Math.round((total) * 100)/100)}</span>
     </div>
-    <button className="w-full mt-4 py-3 bg-slate-600 rounded-lg">Fulfill</button>
+    <button onClick={() => {
+        function sendRegisterExternalItem(sItemID, sRegularUnitPrice, sReceiptText, sPosItemID) {        
+            var sUnitOfMeasureCode = "PCE"
+            var sItemType = "CO"
+            var iQuantity = 1;
+            var sTaxGroupID = "A1"
+        
+            var oRequest = {
+                "itemID": sItemID,
+                "unitOfMeasureCode": sUnitOfMeasureCode,
+                "itemType": sItemType,
+                "actualUnitPrice": sRegularUnitPrice,
+                "quantity": iQuantity,
+                "receiptText": sReceiptText,
+                "registrationNumber": sPosItemID,
+                "mainPOSItemID": sPosItemID,
+                "taxGroupID": sTaxGroupID
+            };
+            oAppEnablementPosInstance.registerExternalLineItem(registerDataOk, registerDataFailed, JSON.stringify(oRequest));
+        }
+        function registerDataOk() {
+            console.log("Succesfully registered", "SEND REQUEST");
+            console.log("Succesfully registered", "success");
+        }
+        function registerDataFailed() {
+            console.error("Registration error.", "SEND REQUEST");
+            console.error("Data registration failed");
+        }
+        sendRegisterExternalItem(123456, (Math.round((total) * 100)/100), "Order ID: " + id , "0000123456")
+    }} className={endpoint == "Past Purchases" ? "hidden": className}>Fulfill</button>
     </div>
     )
 
