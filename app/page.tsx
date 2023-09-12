@@ -36,11 +36,7 @@ export default async function Home() {
   
   return (
     <main className="min-h-screen">
-      <script type="text/javascript" src="/libs/AppEnablementConnector.js"></script>
-      <script type="text/javascript" src="/libs/api/Common.js"></script>
-      <script type="text/javascript" src="/libs/api/Pos.js"></script>
-      <script type="text/javascript" src="/js/test.js"></script>
-
+      <CustomerSection/>
       <Header/>
       <div className="flex flex-col">
       <Suspense fallback={<div>Loading...</div>}>
@@ -51,7 +47,6 @@ export default async function Home() {
       <Section name="Past Purchases"/>
       <Section name="Wish List"/>
       <Button item={80001}/>
-      <CustomerSection/>
       </div>
     </main>
   )
@@ -94,29 +89,27 @@ function Button(props){
 
 function CustomerSection() {
   const [oData, setData] = useState([])
-  const [isLoad, setLoad] = useState(false)
-  // if(localStorage.getItem('oData') !== undefined){
-  //   setLoad(true)
-  // }
-  let data;
+  const [isLoad, setLoad] = useState(true)
   useEffect(() =>{
     if(typeof window !== "undefined"){
-      data = localStorage.getItem('oData') || ""
-      setData(JSON.parse(localStorage.getItem('oData')))
+      window.addEventListener('storage', () =>{
+        console.log("event happend")
+        setLoad(false)
+        setData(JSON.parse(localStorage.getItem('oData')))
+      })
     }
-    setLoad(true)
-  }, [isLoad])
+  }, [])
 
-  
-  console.log(oData[0]?.firstName);
+  if(oData !== null){
+    console.log(oData[0]?.firstName);
+  }
   const customerSection = (<>
   <script type="text/javascript" src="/js/test.js"></script>
-  {/* <script>var secret = "hello"</script> */}
   </>
   )
 
   return (<>
   {customerSection}
-  <div>Test</div>
+    {isLoad ?  <div className="absolute z-50 bg-white h-screen w-full overflow-hidden"><div className="relative h-full pt-56 w-11/12 mx-auto"><img src="/GK_Software_logo.png" alt="" srcset="" /></div></div> : <div className="hidden">Hide</div>}
   </>)
 }

@@ -6,9 +6,13 @@ oAppEnablementCommonInstance.registerListener(oAppEnablementCommonInstance.creat
 
 function dataFound(oData) {
   console.log("hello world")
-  console.log(oData)
-  localStorage.setItem("oData", JSON.stringify(oData))
-  return oData
+  console.log("O data" + oData)
+  if(oData == undefined){
+    return
+  }else{
+    localStorage.setItem("oData", JSON.stringify(oData));
+    window.dispatchEvent(new Event('storage'));
+  }
 }
 function noData(err){
     console.log("error")

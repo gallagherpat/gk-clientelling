@@ -17,31 +17,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-      {/* <Script
-        type="text/javascript"
-        src="/libs/AppEnablementConnector.js"
-        strategy='beforeInteractive'
-        />
-      <Script
-        type="text/javascript"
-        src="/libs/api/Common.js"
-        strategy='beforeInteractive'
-        />
-        <Script
-        type="text/javascript"
-        src="/libs/api/Pos.js"
-        strategy='beforeInteractive'
-        />
-              <Script
-        type="text/javascript"
-        src="/libs/api/Masterdata.js"
-        strategy='beforeInteractive'
-        />
-        <Script
-        type="text/javascript"
-        src="/libs/api/ExternalMasterdata.js"
-        strategy='beforeInteractive'
-        /> */}
+      <script type="text/javascript" src="/libs/AppEnablementConnector.js"></script>
+      <script type="text/javascript" src="/libs/api/Common.js"></script>
+      <script type="text/javascript" src="/libs/api/Pos.js"></script>
+      <script type="text/javascript" src="/js/test.js"></script>
         {children}
         </body>
     </html>
