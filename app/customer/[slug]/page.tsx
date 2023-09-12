@@ -51,7 +51,7 @@ function CustomerSection(props) {
     console.log(oData[0]?.firstName);
   }
   const customerSection = (<>
-  <script type="text/javascript" src="/js/test.js"></script>
+  <script type="text/javascript" src="/js/test.js" defer/>
   </>
   )
 

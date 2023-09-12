@@ -17,10 +17,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-      <script type="text/javascript" src="/libs/AppEnablementConnector.js"></script>
-      <script type="text/javascript" src="/libs/api/Common.js"></script>
-      <script type="text/javascript" src="/libs/api/Pos.js"></script>
-      <script type="text/javascript" src="/js/test.js"></script>
+      <script type="text/javascript" src="/libs/AppEnablementConnector.js" defer/>
+      <script type="text/javascript" src="/libs/api/Common.js" defer/>
+      <script type="text/javascript" src="/libs/api/Pos.js" defer/>
+      <script type="text/javascript" src="/js/test.js" defer/>
         {children}
         </body>
     </html>

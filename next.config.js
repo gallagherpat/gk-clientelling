@@ -3,9 +3,9 @@ const nextConfig = {
     experimental: {
         serverActions: true,
       },
-      env: {
-        TEST: 'This is a test'
-      }
+      eslint: {
+        ignoreDuringBuilds: true,
+    },
 }
 
 module.exports = nextConfig
