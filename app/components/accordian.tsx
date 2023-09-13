@@ -64,7 +64,6 @@ function OpenedAccordian(props) {
     const id = props.id;
     const isIndex = props.index
     let total: number = 0;
-    //console.log(items)
     items.map((item) => total += item.price)
 
 
