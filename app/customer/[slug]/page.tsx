@@ -11,9 +11,9 @@ export default async function Page({params}: {params:{slug: string}}){
                 "id": "400117",
                 "firstName": 'Victoria',
                 "lastName": 'Smith',
-                "points": "300",
+                "points": "Gold",
                 'rewards': ['20% off'],
-                "preferences": ['Bourbon', 'White wine'],
+                "preferences": ['Euro Vodka', 'Spanish Wine'],
             }]
         }
   //console.log(data.data);
