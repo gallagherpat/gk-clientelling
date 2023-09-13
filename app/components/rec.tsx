@@ -7,6 +7,10 @@ import Backdrop from "./backDrop";
 function Rec(props){
     const pageHandler = props.pageHandler;
     const [items, updateItems] = useState([]);
+    let USDollar = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+    });
     const prodReq = async function () {
         const myHeaders = new Headers;
         myHeaders.append("Content-type", "application/json")
@@ -42,21 +46,26 @@ function Rec(props){
     }, [])
 
     const [isModalOpen, setModalOpen] = useState(false);
-    function modalHandler(){
+    const [isIndex, setIndex] = useState(0);
+    function modalHandler(id){
+        console.log(id);
+        setIndex(id);
         (isModalOpen) ? setModalOpen(!isModalOpen) : setModalOpen(!isModalOpen)
         return isModalOpen
     }
 
-    let cards = items.map((item) => <div key={item.itemID}>
-        <button className="border-2 rounded-md min-h-fit p-2 mix-blend-normal bg-white" onClick={modalHandler}>
-            <img height={96} width={96} className="mx-auto" src={item.url} alt="" />
+    let cards = items.map((item, index) => (<>
+    <div key={index}>
+        <button className="border-2 rounded-md h-72 p-2 mix-blend-normal bg-white" onClick={() => {modalHandler(item.itemID)}}>
+            <img height={96} width={96} className="mx-auto" src={item.img} alt="" />
         <h3 className="text-sm text-left font-bold mb-2">{item.receiptText}</h3>
         <p className="text-xs text-left font-200 indent-1">{item.shortDescription}</p>
         <div className="h-[1px] bg-gray-300 mx-2 my-2"></div>
-        <p className="text-sm text-left ml-14">${item.price}</p>
+        <p className="text-sm text-left ml-14">{USDollar.format(item.price)}</p>
         </button>
-        {isModalOpen && <Modal item={item} setModal={modalHandler} pageHandler={pageHandler}/>}
+        <Modal isModalOpen={isModalOpen} modalKey={item.itemID} index={isIndex} item={item} setModal={modalHandler} pageHandler={pageHandler}/>
     </div>
+    </>)
 
     )
     return (

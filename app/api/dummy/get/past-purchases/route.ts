@@ -4,62 +4,58 @@ export async function GET() {
     const JSON = {
     "data": [
         {
-        "orderID": 1,
+        "orderID": 37989,
         "userID": 1,
         "qty": 2,
-        "status": "Ready for pickup",
+        "status": "9/10/2023",
         "shipAddress": "Store 12",
         "basket": [
             {
-                "itemID": 535322411,
-                "price": 35.99,
-                "receiptText": "Whiskey",
-                "registrationNumber": 543210000
+                "itemID": 21987,
+                "price": 17.95,
+                "receiptText": "Virgen Natural Malbec 2019",
+                "registrationNumber": 219870000,
+                "shortDescription": "Malbec",
+                "longDescription": "Made in a completely natural way, with nothing more than fermented grapes, this malbec has a delicious purity.",
+                "img": "/img/21987.jpg",
+                "url": "virgen-natural-malbec-2019-21987",
+                "tag": "organic"
+                
             },
             {
-                "itemID": 98765,
-                "price": 22.99,
-                "receiptText": "Vodka",
-                "registrationNumber": 987650000
-            }
+                "itemID": 24528,
+                "price": 36.95,
+                "receiptText": "Hounds Black Vodka",
+                "registrationNumber": 245280000,
+                "shortDescription": "Vodka",
+                "longDescription": "Made in a completely natural way, with nothing more than fermented grapes, this malbec has a delicious purity.",
+                "img": "/img/24528.jpg",
+                "url": "hounds-black-vodka-24528",
+                "tag": "ontario"
+            },
         ]
     },
     {
-        "orderID": 2,
+        "orderID": 34123,
         "userID": 1,
-        "qty": 2,
-        "status": "Ready for pickup",
+        "qty": 1,
+        "status": "8/24/2023",
         "shipAddress": "Store 12",
         "basket": [
             {
-                "itemID": 64321,
-                "price": 35.99,
-                "receiptText": "Whiskey",
-                "registrationNumber": 543210000
-            },
-            {
-                "itemID": 88765,
-                "price": 22.99,
-                "receiptText": "Vodka",
-                "registrationNumber": 987650000
+                "itemID": 24757,
+                "price": 15.25,
+                "receiptText": "Benaiga Natural Wine Carignan 2021",
+                "registrationNumber": 247570000,
+                "shortDescription": "Carignan",
+                "longDescription": "This juicy, bright wine was fermented with wild yeast in stainless steel to preserve the fine fruit tones.",
+                "img": "/img/24757.jpg",
+                "url": "benaiga-natural-wine-carignan-24757",
+                "tag": ""
             }
         ]
-    },
-    {
-        "orderID": 3,
-        "userID": 1,
-        "qty": 2,
-        "status": "Ready for pickup",
-        "shipAddress": "Store 12",
-        "basket": [
-            {
-                "itemID": 54321,
-                "price": 35.99,
-                "receiptText": "Whiskey",
-                "registrationNumber": 543210000
-            }
-        ]
-    }]
+    }
+    ]
     }
 return NextResponse.json(JSON);
 }

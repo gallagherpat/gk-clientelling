@@ -40,12 +40,12 @@ export default function Accordian(props){
     let accordian = orders.map((order) => (
         <>
             <section onClick={() => {accordianHandler(order.orderID)}} key={order.orderID}>
-                <div className="flex flex-row border-b-[1px] border-b-slate-500 my-4">
-                    <div className="grow">Order ID: {order.orderID}</div>
-                    <span className="flex-none">{order.status}</span>
+                <div className="flex flex-row border-b-[1px] border-b-slate-500 my-4 text-md">
+                    <div className="grow">{props.name == 'Past Purchases' ? "Receipt #:" : "Order ID:"} {order.orderID}</div>
+                    <span className="flex-none pt-1 text-sm">{order.status}</span>
                 </div>
             </section>
-            <OpenedAccordian id={order.orderID} index={isIndex} isAccordianOpen={isAccordianOpen} basket={order.basket} endpoint={props.name} pageHandler={props.pageHandler}/>
+            <OpenedAccordian id={order.orderID} index={isIndex} isAccordianOpen={isAccordianOpen} basket={order.basket} status={order.status} endpoint={props.name} name={props.name} pageHandler={props.pageHandler}/>
         </>
     ))
     return(
@@ -56,6 +56,10 @@ export default function Accordian(props){
 }
 
 function OpenedAccordian(props) {
+    let USDollar = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+    });
     const pageHandler = props.pageHandler;
     const items = props.basket;
     const endpoint = props.endpoint;
@@ -64,23 +68,32 @@ function OpenedAccordian(props) {
     const id = props.id;
     const isIndex = props.index
     let total: number = 0;
-    //console.log(items)
     items.map((item) => total += item.price)
-
-
+    let totalDiv = (
+        <div className="flex">
+        <div className="grow">Subtotal:</div>
+        <span>{USDollar.format(Math.round((total) * 100)/100)}</span>
+    </div>
+    )
+    {props.name == 'Past Purchases' ? "Receipt #:" : "Order ID:"}
+    if(props.name == 'Past Purchases'){
+        totalDiv = (
+            <div className="flex">
+            <div className="grow">Total:</div>
+            <span>{USDollar.format(Math.round((total * 1.14) * 100)/100)}</span>
+        </div>
+        )
+    }
     return (
-    <div className={isOpen && id == isIndex ? "block" : "hidden"} >
+    <div className={isOpen && id == isIndex ? "block text-sm" : "hidden"} >
      {items.map((item, index) => (
-        <div className="flex" key={index}>
-            <div className="grow">{item.receiptText}</div>
-            <span className="text-right">${item.price}</span>
+        <div className="flex my-1" key={index}>
+            <div className="grow"><span>1 </span>{item.receiptText}</div>
+            <span className="text-right">{USDollar.format(item.price)}</span>
         </div>
     ))}
     <div className="h-[1px] bg-slate-500 my-2 mx-4"></div>
-    <div className="flex">
-        <div className="grow">Total:</div>
-        <span>${(Math.round((total) * 100)/100)}</span>
-    </div>
+        {totalDiv}
     <button onClick={() => {
         function sendRegisterExternalItem(sItemID, sRegularUnitPrice, sReceiptText, sPosItemID) {        
             var sUnitOfMeasureCode = "PCE"
@@ -111,7 +124,7 @@ function OpenedAccordian(props) {
         }
         sendRegisterExternalItem(123456, (Math.round((total) * 100)/100), "Order ID: " + id , "0000123456")
         pageHandler();
-    }} className={endpoint == "Past Purchases" ? "hidden": className}>Fulfill</button>
+    }} className={endpoint == "Past Purchases" || props.status != "Ready for pickup"  ? "hidden": className}>Fulfill</button>
     </div>
     )
 
