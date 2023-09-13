@@ -16,7 +16,7 @@ export default function Page(){
     //Work dammit
     "use server"
     const prisma = new PrismaClient();
-    let oPrice: string | undefined | null = data.get('receiptText')?.toString();
+    let oPrice: string | undefined | null = data.get('price')?.toString();
     const item: item = await {
       itemID: data.get('itemID')?.toString(),
       price: parseFloat(oPrice ?? ''),
@@ -26,8 +26,8 @@ export default function Page(){
       longDescription: data.get('longDescription')?.toString(),
       url: data.get('url')?.toString(),
     }
-    console.log(item);
-    console.log(typeof item.price);
+    // console.log(item);
+    // console.log(typeof item.price);
     try{
       const createItem = await prisma.customer.update({
         where: {
@@ -41,7 +41,7 @@ export default function Page(){
           }
         }
       })
-      console.log('Item created', createItem);
+      // console.log('Item created', createItem);
     }catch(error){
       console.error('Error creating item:', error);
     }finally{

@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <main className="min-h-screen">
       <Header/>
-      <UserForm page={'input'}/>
+      <UserForm page={'delete'}/>
     </main>
   )
 }
