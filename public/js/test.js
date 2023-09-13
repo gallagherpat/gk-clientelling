@@ -28,19 +28,8 @@ function oData() {
     return globalData
 }
 
-
-// oAppEnablementCommonInstance.registerListener(oAppEnablementCommonInstance.createRegisterListenerRequest("EVENT_CUSTOMER_REGISTERED", `() => {
-//   console.log("Getting item data.", "GET REQUEST");
-//   oAppEnablementPosInstance.getCurrentCustomerList((oData) => {
-//     console.log("hello world")
-//     console.log(oData)
-//   }, (err) => {
-//     console.log("error")
-//     console.log(err);
-// });
-// }`, true));
-
 oAppEnablementCommonInstance.registerListener(oAppEnablementCommonInstance.createRegisterListenerRequest("FLOW_EVENT_CUSTOMER_FLOW_PAYMENTEND_TRANSACTION_FINISHED_ENTERED", "processEvent", true));
+
 
   function addEvent(text) {
     if(text == 'Transaction closed'){
@@ -81,9 +70,9 @@ oAppEnablementCommonInstance.registerListener(oAppEnablementCommonInstance.creat
         case "FLOW_EVENT_POS_UNLOCKED":
             addEvent('POS UNLOCKED');
             break;
-          case "FLOW_EVENT_CUSTOMER_FLOW_PAYMENTEND_TRANSACTION_FINISHED_ENTERED":
+        case "FLOW_EVENT_CUSTOMER_FLOW_PAYMENTEND_TRANSACTION_FINISHED_ENTERED":
           addEvent('Transaction closed');
-      break;
+          break;
         default:
             addEvent("Generic Event: " + oEvent["messageHeader"]["messageKey"]);
     }
