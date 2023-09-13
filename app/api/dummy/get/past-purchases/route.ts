@@ -7,7 +7,7 @@ export async function GET() {
         "orderID": 37989,
         "userID": 1,
         "qty": 2,
-        "status": "Ready for pickup",
+        "status": "9/10/2023",
         "shipAddress": "Store 12",
         "basket": [
             {
@@ -39,7 +39,7 @@ export async function GET() {
         "orderID": 34123,
         "userID": 1,
         "qty": 1,
-        "status": "Ready for pickup",
+        "status": "8/24/2023",
         "shipAddress": "Store 12",
         "basket": [
             {

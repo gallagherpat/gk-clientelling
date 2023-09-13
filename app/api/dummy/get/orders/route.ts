@@ -4,7 +4,7 @@ export async function GET() {
     const JSON = {
         "data": [
             {
-            "orderID": 1,
+            "orderID": 3,
             "userID": 1,
             "qty": 2,
             "status": "Ready for pickup",
@@ -50,7 +50,7 @@ export async function GET() {
             "orderID": 2,
             "userID": 1,
             "qty": 2,
-            "status": "Ready for pickup",
+            "status": "Store 2623",
             "shipAddress": "Store 12",
             "basket": [
                 {
@@ -67,10 +67,10 @@ export async function GET() {
             ]
         },
         {
-            "orderID": 3,
+            "orderID": 1,
             "userID": 1,
             "qty": 2,
-            "status": "Ready for pickup",
+            "status": "Store 2623",
             "shipAddress": "Store 12",
             "basket": [
                 {
