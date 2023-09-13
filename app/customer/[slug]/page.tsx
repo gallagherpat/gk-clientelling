@@ -57,7 +57,7 @@ function CustomerSection(props) {
 
   return (<>
   {customerSection}
-    {isLoad ?  <div className="absolute z-50 bg-white h-screen w-full overflow-hidden"><div className="relative h-full pt-56 w-11/12 mx-auto"><img src={logoPath} alt="Logo"/></div></div> : <div className="hidden">Hide</div>}
+    {isLoad ?  <div className="absolute z-50 bg-white h-screen w-full"><div className="relative h-full pt-56 w-11/12 mx-auto"><img src={logoPath} alt="Logo"/></div></div> : <div className="hidden">Hide</div>}
   </>)
 }
 

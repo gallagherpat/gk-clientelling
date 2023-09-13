@@ -45,7 +45,7 @@ export default function Accordian(props){
                     <span className="flex-none">{order.status}</span>
                 </div>
             </section>
-            <OpenedAccordian id={order.orderID} index={isIndex} isAccordianOpen={isAccordianOpen} basket={order.basket} endpoint={props.name}/>
+            <OpenedAccordian id={order.orderID} index={isIndex} isAccordianOpen={isAccordianOpen} basket={order.basket} endpoint={props.name} pageHandler={props.pageHandler}/>
         </>
     ))
     return(
@@ -56,9 +56,10 @@ export default function Accordian(props){
 }
 
 function OpenedAccordian(props) {
+    const pageHandler = props.pageHandler;
     const items = props.basket;
     const endpoint = props.endpoint;
-    const className = "w-full mt-4 py-3 bg-slate-600 rounded-lg"
+    const className = "w-full mt-4 py-3 bg-slate-600 rounded-lg text-white"
     const isOpen = props.isAccordianOpen
     const id = props.id;
     const isIndex = props.index
@@ -109,6 +110,7 @@ function OpenedAccordian(props) {
             console.error("Data registration failed");
         }
         sendRegisterExternalItem(123456, (Math.round((total) * 100)/100), "Order ID: " + id , "0000123456")
+        pageHandler();
     }} className={endpoint == "Past Purchases" ? "hidden": className}>Fulfill</button>
     </div>
     )

@@ -3,12 +3,43 @@ import { NextResponse } from "next/server";
 export async function GET() {
     const JSON = {
     "data":[{
-                "itemID": 80001,
-                "price": 35.99,
-                "receiptText": "Whiskey",
-                "registrationNumber": 543210000,
-                "url": '/GK_Software_logo.png'
-            }]
+                "itemID": 21987,
+                "price": 17.95,
+                "receiptText": "Virgen Natural Malbec 2019",
+                "registrationNumber": 219870000,
+                "shortDescription": "Malbec",
+                "longDescription": "Made in a completely natural way, with nothing more than fermented grapes, this malbec has a delicious purity.",
+                "url": '/img/21987.jpg'
+            },
+            {
+                "itemID": 21987,
+                "price": 17.95,
+                "receiptText": "Virgen Natural Malbec 2019",
+                "registrationNumber": 219870000,
+                "shortDescription": "Malbec",
+                "longDescription": "Made in a completely natural way, with nothing more than fermented grapes, this malbec has a delicious purity.",
+                "url": '/img/21987.jpg'
+            },
+            {
+                "itemID": 21987,
+                "price": 17.95,
+                "receiptText": "Virgen Natural Malbec 2019",
+                "registrationNumber": 219870000,
+                "shortDescription": "Malbec",
+                "longDescription": "Made in a completely natural way, with nothing more than fermented grapes, this malbec has a delicious purity.",
+                "url": '/img/21987.jpg'
+            },
+            {
+                "itemID": 21987,
+                "price": 17.95,
+                "receiptText": "Virgen Natural Malbec 2019",
+                "registrationNumber": 219870000,
+                "shortDescription": "Malbec",
+                "longDescription": "Made in a completely natural way, with nothing more than fermented grapes, this malbec has a delicious purity.",
+                "url": '/img/21987.jpg'
+            },
+        
+        ]
         }
 return NextResponse.json(JSON);
 }

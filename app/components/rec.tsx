@@ -5,6 +5,7 @@ import Modal from "./modal";
 import Backdrop from "./backDrop";
 
 function Rec(props){
+    const pageHandler = props.pageHandler;
     const [items, updateItems] = useState([]);
     const prodReq = async function () {
         const myHeaders = new Headers;
@@ -17,8 +18,6 @@ function Rec(props){
         });
         const res = await req.json();
         const data = await res;
-        // console.log("FETCH DATA")
-        // console.log(data)
         updateItems(data);
     }
     const dummyReq = async function() {
@@ -35,8 +34,6 @@ function Rec(props){
         });  
         const res = await req.json();
         const data = await res;
-        // console.log("FETCH DATA")
-        // console.log(data.data);
         updateItems(data.data);  
     }
 
@@ -47,18 +44,18 @@ function Rec(props){
     const [isModalOpen, setModalOpen] = useState(false);
     function modalHandler(){
         (isModalOpen) ? setModalOpen(!isModalOpen) : setModalOpen(!isModalOpen)
-        // console.log(isModalOpen);
         return isModalOpen
     }
 
     let cards = items.map((item) => <div key={item.itemID}>
         <button className="border-2 rounded-md min-h-fit p-2 mix-blend-normal bg-white" onClick={modalHandler}>
-            <img height={128} width={128} className="mx-auto py-6" src={item.url} alt="" />
-        <h3 className="text-sm text-left font-bold">{item.receiptText}</h3>
-        <p className="text-xs text-left font-thin indent-1">afterpay</p>
-        <p className="text-xs text-left ml-1">{item.price}</p>
+            <img height={96} width={96} className="mx-auto" src={item.url} alt="" />
+        <h3 className="text-sm text-left font-bold mb-2">{item.receiptText}</h3>
+        <p className="text-xs text-left font-200 indent-1">{item.shortDescription}</p>
+        <div className="h-[1px] bg-gray-300 mx-2 my-2"></div>
+        <p className="text-sm text-left ml-14">${item.price}</p>
         </button>
-        {isModalOpen && <Modal item={item} setModal={modalHandler}/>}
+        {isModalOpen && <Modal item={item} setModal={modalHandler} pageHandler={pageHandler}/>}
     </div>
 
     )

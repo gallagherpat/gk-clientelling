@@ -40,45 +40,51 @@ function oData() {
 // });
 // }`, true));
 
-// oAppEnablementCommonInstance.registerListener(oAppEnablementCommonInstance.createRegisterListenerRequest("FLOW_EVENT_CUSTOMER_FLOW_PAYMENTEND_TRANSACTION_FINISHED_ENTERED", "processEvent", true));
+oAppEnablementCommonInstance.registerListener(oAppEnablementCommonInstance.createRegisterListenerRequest("FLOW_EVENT_CUSTOMER_FLOW_PAYMENTEND_TRANSACTION_FINISHED_ENTERED", "processEvent", true));
 
-//   function addEvent(text) {
-//     console.log(text);
-//     location.reload();
-//     return text
-// }
+  function addEvent(text) {
+    if(text == 'Transaction closed'){
+      console.log('reload')
+      localStorage.removeItem('oData');
+      location.reload();
+    }
+    return text
+}
 
-//   function processEvent(oEvent) {
-//     console.log(JSON.stringify(oEvent));
-//     switch (oEvent["messageHeader"]["messageKey"]) {
-//         case "EVENT_SALERETURNLINEITEM_UPDATED_REGISTERED":
-//             addEvent('Line Item Registered');
-//             break;
-//         case "EVENT_LINE_ITEM_CLOSED":
-//             addEvent('Line Item Closed');
-//             break;
-//         case "EVENT_SALERETURNLINEITEM_UPDATED_QUANTITY":
-//             addEvent('Quantity changed');
-//             break;
-//         case "EVENT_TRANSACTION_CLOSED":
-//             addEvent('Transaction closed');
-//             break;
-//         case "EVENT_SALERETURNLINEITEM_UPDATED_PRICE":
-//             addEvent('Item Price changed');
-//             break;
-//         case "EVENT_POS_INPUT_MSR_DATA":
-//             addEvent('MSR Scanned:\n' + oEvent["payload"]);
-//             break;
-//         case "FLOW_EVENT_INACTIVITY_TIMER":
-//             addEvent('Inactivity triggered - timeout');
-//             break;
-//         case "FLOW_EVENT_POS_LOCKED":
-//             addEvent('POS LOCKED');
-//             break;
-//         case "FLOW_EVENT_POS_UNLOCKED":
-//             addEvent('POS UNLOCKED');
-//             break;
-//         default:
-//             addEvent("Generic Event: " + oEvent["messageHeader"]["messageKey"]);
-//     }
-// }
+  function processEvent(oEvent) {
+    console.log(JSON.stringify(oEvent));
+    switch (oEvent["messageHeader"]["messageKey"]) {
+        case "EVENT_SALERETURNLINEITEM_UPDATED_REGISTERED":
+            addEvent('Line Item Registered');
+            break;
+        case "EVENT_LINE_ITEM_CLOSED":
+            addEvent('Line Item Closed');
+            break;
+        case "EVENT_SALERETURNLINEITEM_UPDATED_QUANTITY":
+            addEvent('Quantity changed');
+            break;
+        case "EVENT_TRANSACTION_CLOSED":
+            addEvent('Transaction closed');
+            break;
+        case "EVENT_SALERETURNLINEITEM_UPDATED_PRICE":
+            addEvent('Item Price changed');
+            break;
+        case "EVENT_POS_INPUT_MSR_DATA":
+            addEvent('MSR Scanned:\n' + oEvent["payload"]);
+            break;
+        case "FLOW_EVENT_INACTIVITY_TIMER":
+            addEvent('Inactivity triggered - timeout');
+            break;
+        case "FLOW_EVENT_POS_LOCKED":
+            addEvent('POS LOCKED');
+            break;
+        case "FLOW_EVENT_POS_UNLOCKED":
+            addEvent('POS UNLOCKED');
+            break;
+          case "FLOW_EVENT_CUSTOMER_FLOW_PAYMENTEND_TRANSACTION_FINISHED_ENTERED":
+          addEvent('Transaction closed');
+      break;
+        default:
+            addEvent("Generic Event: " + oEvent["messageHeader"]["messageKey"]);
+    }
+}

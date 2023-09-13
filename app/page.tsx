@@ -5,23 +5,6 @@ import Header from "./layouts/header"
 import CustomerCard from "./layouts/cust-card"
 import { Suspense, useEffect, useState } from 'react';
 
-// async function getData() {
-//   const myHeaders = new Headers;
-//   myHeaders.append("Content-type", "application/json");
-
-//   const req = await fetch(`./api/dummy/get/member`, {
-//     method: 'GET',
-//     headers: myHeaders,
-//     redirect: 'follow',
-//     cache: 'no-store'
-//   })
-//   if(!req.ok) {
-//     throw new Error('Failed to fetch')
-//   }
-//   return req.json()
-// }
-
-
 export default async function Home() {
   const data ={
     "data":[{
@@ -74,6 +57,6 @@ function CustomerSection() {
 
   return (<>
   {customerSection}
-    {isLoad ?  <div className="hidden absolute z-50 bg-white h-screen w-full overflow-hidden"><div className="relative h-full pt-56 w-11/12 mx-auto"><img src="/GK_Software_logo.png" alt="Logo"/></div></div> : <div className="hidden">Hide</div>}
+    {isLoad ?  <div className="absolute z-50 bg-white h-screen w-full"><div className="relative h-full pt-56 w-11/12 mx-auto"><img src="/GK_Software_logo.png" alt="Logo"/></div></div> : <div className="hidden">Hide</div>}
   </>)
 }

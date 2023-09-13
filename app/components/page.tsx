@@ -18,16 +18,16 @@ function Page(props){
     
     switch(pageType) {
         case 'Orders':
-        componentType = <Accordian name={props.name}/>
+        componentType = <Accordian name={props.name} pageHandler={pageHandler}/>
         break;
         case 'Recommendations':
-        componentType = <Rec name={props.name}/>
+        componentType = <Rec name={props.name} pageHandler={pageHandler}/>
         break;
         case 'Past Purchases':
-        componentType = <Accordian name={props.name}/>
+        componentType = <Accordian name={props.name} pageHandler={pageHandler}/>
         break;
         case 'Wish List':
-        componentType = <Rec name={props.name}/>
+        componentType = <Rec name={props.name} pageHandler={pageHandler}/>
         break;
         default:
             console.error("Bad switch");
