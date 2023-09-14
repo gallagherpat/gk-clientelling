@@ -11,7 +11,7 @@ function Section(props){
     }
     const name = props.name;
 
-    return (<div className="row-auto mx-4 mt-4 text-xl">
+    return (<div className="row-auto mx-4 pt-3 text-xl">
     <div className="flex py-2 ps-2 justify-between bg-[#91a9d2] rounded-full">
         <span className="ml-2">{props.name}</span>   
         <button className="mr-2" onClick={pageHandler}>

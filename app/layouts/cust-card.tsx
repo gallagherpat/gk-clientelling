@@ -15,6 +15,7 @@ export default function CustomerCard(props){
             </svg>
                 <p className="indent-1 font-bold">Member ID: {member.id}</p>
             </div>
+                <h3 className="ml-8">DOB: {member.DOB}</h3>
                 <h4 className="indent-8">Status: {member.points}</h4>
                 <h5 className="flex">
                     <svg xmlns="http://www.w3.org/2000/svg" height="26" viewBox="0 96 960 960" width="26">
