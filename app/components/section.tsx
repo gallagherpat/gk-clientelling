@@ -23,7 +23,7 @@ function Section(props){
                 </svg>
         </button>
     </div>
-    {pageIsOpen && <Page name={name} setPageIsOpen={pageHandler}/>}
+    {pageIsOpen && <Page name={props.name} setPageIsOpen={pageHandler}/>}
     </div>
     )
 }

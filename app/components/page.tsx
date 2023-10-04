@@ -8,6 +8,9 @@ function Page(props){
     const [isAnimated, setAnimation] = useState(true);
     let pageType = props.name;
     let componentType;
+    if(pageType === "Wish List"){
+        pageType = "Favorites"
+    }
     // console.log(isAnimated);
     function pageHandler(){
         setAnimation(false);
@@ -26,7 +29,7 @@ function Page(props){
         case 'Past Purchases':
         componentType = <Accordian name={props.name} pageHandler={pageHandler}/>
         break;
-        case 'Wish List':
+        case 'Favorites':
         componentType = <Rec name={props.name} pageHandler={pageHandler}/>
         break;
         default:
@@ -39,7 +42,7 @@ function Page(props){
                 <button id="backBtn" onClick={pageHandler}>
                     <svg xmlns="http://www.w3.org/2000/svg" height="26" viewBox="0 96 960 960" width="26"><path d="M480 896 160 576l320-320 42 42-248 248h526v60H274l248 248-42 42Z"/></svg>
                 </button>
-                <p id="page-name" className="ml-2">{props.name}</p>
+                <p id="page-name" className="ml-2">{pageType}</p>
             </h1>
         </header>
         {componentType}
