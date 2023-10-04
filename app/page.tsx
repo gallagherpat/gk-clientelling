@@ -11,7 +11,7 @@ export default async function Home() {
                 "id": "400117",
                 "firstName": 'Victoria',
                 "lastName": 'Smith',
-                "points": "300",
+                "points": "300", 
                 'rewards': ['20% off'],
                 "preferences": ['hello', 'world'],
             }]
@@ -37,6 +37,7 @@ export default async function Home() {
 function CustomerSection() {
   const [oData, setData] = useState([])
   const [isLoad, setLoad] = useState(true)
+  const [isCount, setCount] = useState(0)
   useEffect(() =>{
     if(typeof window !== "undefined"){
       window.addEventListener('storage', () =>{
@@ -57,6 +58,13 @@ function CustomerSection() {
 
   return (<>
   {customerSection}
-    {isLoad ?  <div className="absolute z-50 bg-white h-screen w-full"><div className="relative h-full pt-56 w-11/12 mx-auto"><img src="/GK_Software_logo.png" alt="Logo"/></div></div> : <div className="hidden">Hide</div>}
+    {isLoad ?  <div onClick={() => {
+      setCount((prev) => prev += 1)
+      console.log(isCount);
+      if(isCount > 5){
+        console.log("Dev open");
+        setLoad(false)
+      }
+    }} className="absolute z-50 bg-white h-screen w-full"><div className="relative h-full pt-56 w-11/12 mx-auto"><img src="/GK_Software_logo.png" alt="Logo"/></div></div> : <div className="hidden">Hide</div>}
   </>)
 }

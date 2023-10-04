@@ -69,32 +69,7 @@ function OpenedAccordian(props) {
     const isIndex = props.index
     let total: number = 0;
     items.map((item) => total += item.price)
-    let totalDiv = (
-        <div className="flex">
-        <div className="grow">Subtotal:</div>
-        <span>{USDollar.format(Math.round((total) * 100)/100)}</span>
-    </div>
-    )
-    {props.name == 'Past Purchases' ? "Receipt #:" : "Order ID:"}
-    if(props.name == 'Past Purchases'){
-        totalDiv = (
-            <div className="flex">
-            <div className="grow">Total:</div>
-            <span>{USDollar.format(Math.round((total * 1.14) * 100)/100)}</span>
-        </div>
-        )
-    }
-    return (
-    <div className={isOpen && id == isIndex ? "block text-sm" : "hidden"} >
-     {items.map((item, index) => (
-        <div className="flex my-1" key={index}>
-            <div className="grow"><span>1 </span>{item.receiptText}</div>
-            <span className="text-right">{USDollar.format(item.price)}</span>
-        </div>
-    ))}
-    <div className="h-[1px] bg-slate-500 my-2 mx-4"></div>
-        {totalDiv}
-    <button onClick={() => {
+    const singleOrderLineItem = function(){
         function sendRegisterExternalItem(sItemID, sRegularUnitPrice, sReceiptText, sPosItemID) {        
             var sUnitOfMeasureCode = "PCE"
             var sItemType = "CO"
@@ -123,6 +98,53 @@ function OpenedAccordian(props) {
             console.error("Data registration failed");
         }
         sendRegisterExternalItem(123456, (Math.round((total) * 100)/100), "Order ID: " + id , "0000123456")
+    }
+    let totalDiv = (
+        <div className="flex">
+        <div className="grow">Subtotal:</div>
+        <span>{USDollar.format(Math.round((total) * 100)/100)}</span>
+    </div>
+    )
+    {props.name == 'Past Purchases' ? "Receipt #:" : "Order ID:"}
+    if(props.name == 'Past Purchases'){
+        totalDiv = (
+            <div className="flex">
+            <div className="grow">Total:</div>
+            <span>{USDollar.format(Math.round((total * 1.14) * 100)/100)}</span>
+        </div>
+        )
+    }
+    return (
+    <div className={isOpen && id == isIndex ? "block text-sm" : "hidden"} >
+     {items.map((item, index) => (
+        <div className="flex my-1" key={index}>
+            <div className="grow"><span>1 </span>{item.receiptText}</div>
+            <span className="text-right">{USDollar.format(item.price)}</span>
+        </div>
+    ))}
+    <div className="h-[1px] bg-slate-500 my-2 mx-4"></div>
+        {totalDiv}
+    <button onClick={() => {
+        // console.log("Click")
+        // console.log(isIndex)
+        // console.log(items[0])
+        const sendRegisterItem = function(item: number){
+          let registerLineItemRequest = JSON.stringify({
+              "itemID": item
+          });
+          oAppEnablementPosInstance.registerLineItem(registerDataOk, registerDataFailed, registerLineItemRequest);
+          }
+          function registerDataOk() {
+            console.log("Succesfully registered", "success");
+          }
+          function registerDataFailed() {
+            console.error("Data registration failed");
+          }
+          for(let i = 0; i < items.length; i++){
+            console.log("Click")
+            console.log(items[i])
+            sendRegisterItem(items[i].itemID);
+          }
         pageHandler();
     }} className={endpoint == "Past Purchases" || props.status != "Ready for pickup"  ? "hidden": className}>Fulfill</button>
     </div>
