@@ -16,7 +16,8 @@ export default function CustomerCard(props){
                 <p className="indent-1 font-bold">Member ID: {member.id}</p>
             </div>
                 <h3 className="ml-8">DOB: {member.DOB}</h3>
-                <h4 className="indent-8">Status: {member.points}</h4>
+                <h3 className="ml-8">Status: {member.status}</h3>
+                {/* <h4 className="indent-8">Points: {member.points}</h4> */}
                 <h5 className="flex">
                     <svg xmlns="http://www.w3.org/2000/svg" height="26" viewBox="0 96 960 960" width="26">
                         <path d="M716 936H272V424l278-288 39 31q6 5 9 14t3 22v10l-45 211h299q24 0 42 18t18 42v81.839q0 7.161 1.5 14.661T915 595L789 885q-8.878 21.25-29.595 36.125Q738.689 936 716 936Zm-384-60h397l126-299v-93H482l53-249-203 214v427Zm0-427v427-427Zm-60-25v60H139v392h133v60H79V424h193Z"/>
@@ -35,10 +36,13 @@ export default function CustomerCard(props){
                 <svg xmlns="http://www.w3.org/2000/svg" height="26" viewBox="0 96 960 960" width="26">
                     <path d="m524 794 140-140q11-11 16-24.5t5-28.5q0-32-22.5-54.5T608 524q-20 0-40 13t-44 42q-24-29-44-42t-40-13q-32 0-54.5 22.5T363 601q0 15 5 28.5t16 24.5l140 140Zm35 165q-18 18-43.5 18T472 959L97 584q-10-10-13.5-21T80 540V236q0-26 17-43t43-17h304q12 0 24 3.5t22 13.5l373 373q19 19 19 44.5T863 655L559 959Zm-41-41 304-304-378-378H140v304l378 378ZM245 392q21 0 36.5-15.5T297 340q0-21-15.5-36.5T245 288q-21 0-36.5 15.5T193 340q0 21 15.5 36.5T245 392ZM140 236Z"/>
                 </svg>                    
-                <div className="indent-1 font-bold">Rewards
-                    <ul>
+                <div className="indent-1 font-bold">Points
+                <ul className="font-normal">
+                    {member.points}
+                </ul>
+                    {/* <ul>
                         {rewards.map((reward, index) => <li key={index} className="indent-6 font-normal">{reward}</li>)}
-                    </ul>
+                    </ul> */}
                     </div>                
                 </h5>
             </div>

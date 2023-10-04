@@ -13,7 +13,8 @@ export default function Page({params}: {params:{slug: string}}){
                 "firstName": 'Victoria',
                 "lastName": 'Smith',
                 "DOB" : "12/03/1987",
-                "points": "Gold",
+                "points": "140,000",
+                "status": 'Gold',
                 'rewards': ['$5 off $50'],
                 "preferences": ['Euro Vodka', 'Spanish Wine'],
             }]
