@@ -4,6 +4,18 @@ export async function GET() {
     const JSON = {
     "data":[
         {
+            "itemID": 541755,
+            "price": 44.95,
+            "receiptText": "Spirit of York Vodka",
+            "registrationNumber": 219870000,
+            "shortDescription": "Vodka",
+            "longDescription": "A modern landmark in the distillery district - the copper columns of the still at the Spirit of York Distillery are revealed by a striking transparent glass tower.",
+            "img": "/img/541755.jpg",
+            "url": "spirit-of-york-vodka-541755",
+            "tag": "ontario"
+            
+        },
+        {
             "itemID": 21987,
             "price": 17.95,
             "receiptText": "Virgen Natural Malbec 2019",
