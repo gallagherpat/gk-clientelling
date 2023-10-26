@@ -3,6 +3,34 @@ let oAppEnablementPosInstance = new comGkSoftwareGkrAppEnablementApi.Pos();
 
 oAppEnablementCommonInstance.registerListener(oAppEnablementCommonInstance.createRegisterListenerRequest("EVENT_CUSTOMER_REGISTERED", "getCustomerData", true));
 
+var comAppenablementFunctions = comAppenablementFunctions || {};
+
+comAppenablementFunctions.Connector = function(){
+  "use strict"
+  this._prefix = "comAppenablementFunctions.Connector/"
+}
+
+comAppenablementFunctions.Connector.prototype.ConnectionTest = (sConnection) => {
+  console.log(sConnection)
+  return sConnection
+};
+
+comAppenablementFunctions.Connector.prototype.sendRegisterItem = (sItemID) => {
+  console.log(sItemID);
+  let registerLineItemRequest = JSON.stringify({
+      "itemID": sItemID
+  });
+  oAppEnablementPosInstance.registerLineItem("registerDataOk", "registerDataFailed", registerLineItemRequest); 
+}
+  function registerDataOk() {
+    console.log("Succesfully registered", "success");
+  }
+  function registerDataFailed() {
+    console.error("Data registration failed");
+  }
+
+
+
 
 function dataFound(oData) {
   console.log("hello world")

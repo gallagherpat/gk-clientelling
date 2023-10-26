@@ -11,19 +11,6 @@ function Rec(props){
         style: 'currency',
         currency: 'USD',
     });
-    const prodReq = async function () {
-        const myHeaders = new Headers;
-        myHeaders.append("Content-type", "application/json")
-        const req = await fetch('/api/get/customer/item', {
-            method: 'POST',
-            headers: myHeaders,
-            body: JSON.stringify({customer: 'test'}),
-            redirect: "follow"
-        });
-        const res = await req.json();
-        const data = await res;
-        updateItems(data);
-    }
     const dummyReq = async function() {
         let endpoint = props.name.toLowerCase();
         if(endpoint == 'wish list'){
@@ -48,13 +35,13 @@ function Rec(props){
     const [isModalOpen, setModalOpen] = useState(false);
     const [isIndex, setIndex] = useState(0);
     function modalHandler(id){
-        console.log(id);
         setIndex(id);
         (isModalOpen) ? setModalOpen(!isModalOpen) : setModalOpen(!isModalOpen)
         return isModalOpen
     }
 
-    let cards = items.map((item, index) => (<>
+    let cards = items.map((item, index) => (
+    <>
     <div key={index}>
         <button className="border-2 rounded-md h-72 p-2 mix-blend-normal bg-white" onClick={() => {modalHandler(item.itemID)}}>
             <img height={96} width={96} className="mx-auto" src={item.img} alt="" />
@@ -65,9 +52,8 @@ function Rec(props){
         </button>
         <Modal isModalOpen={isModalOpen} modalKey={item.itemID} index={isIndex} item={item} setModal={modalHandler} pageHandler={pageHandler}/>
     </div>
-    </>)
-
-    )
+    </>
+    ))
     return (
         <div id="gridHeader" className="grid grid-cols-2 gap-2 mt-2 mx-4">
             {cards}

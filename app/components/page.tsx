@@ -8,16 +8,14 @@ function Page(props){
     const [isAnimated, setAnimation] = useState(true);
     let pageType = props.name;
     let componentType;
+    let className = "absolute top-0 left-0 h-screen w-full rounded-xl bg-gradient-to-b from-[#D6DBDC] to-white";
     if(pageType === "Wish List"){
         pageType = "Favorites"
     }
-    // console.log(isAnimated);
     function pageHandler(){
         setAnimation(false);
-        // console.log(isAnimated);
         setTimeout(props.setPageIsOpen, 275)
     }
-    //console.log(pageType);
     
     switch(pageType) {
         case 'Orders':
@@ -36,7 +34,7 @@ function Page(props){
             console.error("Bad switch");
     }
 
-    return (<div className={isAnimated ? "absolute top-0 left-0 h-screen w-full rounded-xl bg-gradient-to-b from-[#D6DBDC] to-white animate-slide" : "absolute top-0 left-0 h-screen w-full rounded-xl bg-gradient-to-b from-[#D6DBDC] to-white animate-reverseSlide"}>
+    return (<div className={isAnimated ? className + " animate-slide" : className + " animate-reverseSlide"}>
         <header className="drop-shadow-lg py-4 bg-white">
             <h1 className="flex text-xl ml-4">
                 <button id="backBtn" onClick={pageHandler}>
@@ -47,7 +45,6 @@ function Page(props){
         </header>
         {componentType}
     </div>)
-
 }
 
 export default Page;
