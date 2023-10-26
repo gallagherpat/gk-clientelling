@@ -13,7 +13,6 @@ function Modal(props){
       let oAppFunctions = new comAppenablementFunctions.Connector;
       oAppFunctions.sendRegisterItem(item.itemID)
       pageHandler();
-        
     }}>Add to Cart</button>
     )
     return (
