@@ -36,15 +36,15 @@ export default function Accordian(props){
         dummyReq();
     }, [])
     let accordian = orders.map((order) => (
-        <>
-            <section onClick={() => {accordianHandler(order.orderID)}} key={order.orderID}>
+        <div key={order.orderID}>
+            <section onClick={() => {accordianHandler(order.orderID)}}>
                 <div className="flex flex-row border-b-[1px] border-b-slate-500 my-4 text-md">
                     <div className="grow">{props.name == 'Past Purchases' ? "Receipt #:" : "Order ID:"} {order.orderID}</div>
                     <span className="flex-none pt-1 text-sm">{order.status}</span>
                 </div>
             </section>
             <OpenedAccordian order={order} index={isIndex} isAccordianOpen={isAccordianOpen} name={props.name} pageHandler={props.pageHandler}/>
-        </>
+        </div>
     ))
     return(
     <div className="w-11/12 mx-auto">
@@ -64,9 +64,10 @@ function OpenedAccordian(props) {
     
     const pageHandler = props.pageHandler;
     const name = props.name;
-    const className = "w-full mt-4 py-3 bg-slate-600 rounded-lg text-white"
+    const className = "w-full py-3 mt-4 text-white rounded-lg bg-slate-600";
+
     let total: number = 0;
-    basket.map((item) => total += item.price)
+    basket.map((item) => total += item.price);
 
     let totalDiv = (
         <div className="flex">
@@ -87,6 +88,7 @@ function OpenedAccordian(props) {
     <div className={props.isAccordianOpen && order.orderID == props.index ? "block text-sm" : "hidden"} >
      {basket.map((item, index) => (
         <div className="flex my-1" key={index}>
+            {/* Quanity and item name and price of */}
             <div className="grow"><span>1 </span>{item.receiptText}</div>
             <span className="text-right">{USDollar.format(item.price)}</span>
         </div>
@@ -94,22 +96,9 @@ function OpenedAccordian(props) {
     <div className="h-[1px] bg-slate-500 my-2 mx-4"></div>
         {totalDiv}
     <button onClick={() => {
-        const sendRegisterItem = function(item: number){
-          let registerLineItemRequest = JSON.stringify({
-              "itemID": item
-          });
-          oAppEnablementPosInstance.registerLineItem(registerDataOk, registerDataFailed, registerLineItemRequest);
-          }
-          function registerDataOk() {
-            console.log("Succesfully registered", "success");
-          }
-          function registerDataFailed() {
-            console.error("Data registration failed");
-          }
+        const oAppFunctions = new comAppenablementFunctions.Connector;
           for(let i = 0; i < basket.length; i++){
-            console.log("Click")
-            console.log(basket[i])
-            sendRegisterItem(basket[i].itemID);
+            oAppFunctions.sendRegisterItem(basket[i].itemID);
           }
         pageHandler();
     }} className={name == "Past Purchases" || order.status != "Ready for pickup"  ? "hidden": className}>Fulfill</button>

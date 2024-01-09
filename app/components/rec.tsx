@@ -1,16 +1,20 @@
 //@ts-nocheck
 "use client"
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import Modal from "./modal";
 import Backdrop from "./backDrop";
+
 
 function Rec(props){
     const pageHandler = props.pageHandler;
     const [items, updateItems] = useState([]);
+
     let USDollar = new Intl.NumberFormat('en-US', {
         style: 'currency',
         currency: 'USD',
     });
+
     const dummyReq = async function() {
         let endpoint = props.name.toLowerCase();
         if(endpoint == 'wish list'){
@@ -25,8 +29,8 @@ function Rec(props){
         });  
         const res = await req.json();
         const data = await res;
-        updateItems(data.data);  
-    }
+        updateItems(data.data);
+    };
 
     useEffect(() => {
         dummyReq();
@@ -41,21 +45,26 @@ function Rec(props){
     }
 
     let cards = items.map((item, index) => (
-    <>
     <div key={index}>
-        <button className="border-2 rounded-md h-72 p-2 mix-blend-normal bg-white" onClick={() => {modalHandler(item.itemID)}}>
-            <img height={96} width={96} className="mx-auto" src={item.img} alt="" />
-        <h3 className="text-sm text-left font-bold mb-2">{item.receiptText}</h3>
-        <p className="text-xs text-left font-200 indent-1">{item.shortDescription}</p>
-        <div className="h-[1px] bg-gray-300 mx-2 my-2"></div>
-        <p className="text-sm text-left ml-14">{USDollar.format(item.price)}</p>
+        <button className="p-2 bg-white border-2 rounded-md h-72 mix-blend-normal" 
+        onClick={() => {modalHandler(item.itemID)}}>
+            <Image 
+                className="w-auto" 
+                src={item.img} 
+                alt={`Product Image ${index}`} 
+                height={100} 
+                width={100}/>
+            <h3 className="mb-2 text-sm font-bold text-left">{item.receiptText.length > 20 ? item.receiptText.substring(0, 20) + "...": item.receiptText}</h3>
+            <p className="text-xs text-left font-200 indent-1">{item.shortDescription}</p>
+            <div className="h-[1px] bg-gray-300 mx-2 my-2"></div>
+            <p className="text-sm text-left ml-14">{USDollar.format(item.price)}</p>
         </button>
         <Modal isModalOpen={isModalOpen} modalKey={item.itemID} index={isIndex} item={item} setModal={modalHandler} pageHandler={pageHandler}/>
     </div>
-    </>
     ))
+    
     return (
-        <div id="gridHeader" className="grid grid-cols-2 gap-2 mt-2 mx-4">
+        <div id="gridHeader" className="grid grid-cols-2 gap-2 mx-4 mt-2">
             {cards}
             {isModalOpen && <Backdrop setModal={modalHandler}/>}
         </div>

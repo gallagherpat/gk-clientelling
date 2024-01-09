@@ -14,8 +14,6 @@ export default function MostRecentOrder() {
 
         setMostRecent(data.data);
         setLoad(true)
-        console.log(data.data[0]);
-        console.log(isMostRecent[0])
     }
     useEffect(() => {
         dummyReq()
