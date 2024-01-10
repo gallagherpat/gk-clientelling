@@ -33,8 +33,9 @@ comAppenablementFunctions.Connector.prototype.sendRegisterItem = (sItemID) => {
 
 
 function dataFound(oData) {
-  console.log("hello world")
-  console.log("O data" + oData)
+  // console.log("hello world")
+  // console.log("O data" + oData)
+  // console.log(oData)
   if(oData == undefined){
     return
   }else{
@@ -56,14 +57,19 @@ function oData() {
     return globalData
 }
 
+
+
 oAppEnablementCommonInstance.registerListener(oAppEnablementCommonInstance.createRegisterListenerRequest("FLOW_EVENT_CUSTOMER_FLOW_PAYMENTEND_TRANSACTION_FINISHED_ENTERED", "processEvent", true));
 
 
   function addEvent(text) {
     if(text == 'Transaction closed'){
-      console.log('reload')
+      // console.log('reload')
       localStorage.removeItem('oData');
-      location.reload();
+      location.reload(); 
+    }
+    if(text == 'Line Item Registered'){
+      console.log("Item registered")
     }
     return text
 }

@@ -1,4 +1,3 @@
-//@ts-nocheck
 import { cache } from 'react';
 import Button from './button';
 
@@ -17,6 +16,7 @@ const getBasketData = cache(async () =>{
 
 async function ServerRec() {
     const basket = await getBasketData();
+    //@ts-ignore
     const cards = basket.map((item, index) => {
         return (
         <div key={index}>
