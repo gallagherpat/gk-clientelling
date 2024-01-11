@@ -20,6 +20,9 @@ export default function RootLayout({
       <script type="text/javascript" src="/libs/AppEnablementConnector.js" defer/>
       <script type="text/javascript" src="/libs/api/Common.js" defer/>
       <script type="text/javascript" src="/libs/api/Pos.js" defer/>
+      <script type="text/javascript" src="/libs/api/Masterdata.js" defer/>
+      <script type="text/javascript" src="/libs/api/ExternalMasterdata.js" defer/>
+
       <script type="text/javascript" src="/js/app.js" defer/>
         {children}
         </body>

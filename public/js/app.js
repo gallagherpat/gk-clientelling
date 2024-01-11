@@ -1,5 +1,6 @@
 let oAppEnablementCommonInstance = new comGkSoftwareGkrAppEnablementApi.Common();
 let oAppEnablementPosInstance = new comGkSoftwareGkrAppEnablementApi.Pos();
+let oAppEnablementMasterdataInstance = new comGkSoftwareGkrAppEnablementApi.Masterdata();
 
 oAppEnablementCommonInstance.registerListener(oAppEnablementCommonInstance.createRegisterListenerRequest("EVENT_CUSTOMER_REGISTERED", "getCustomerData", true));
 
@@ -14,13 +15,26 @@ comAppenablementFunctions.Connector.prototype.ConnectionTest = (sConnection) => 
   console.log(sConnection)
   return sConnection
 };
+let itemDataTest;
+//Get master data
+comAppenablementFunctions.Connector.prototype.sendGetItemDataByID = (sItemID) => {
+  console.log(sItemID);
+  let createGetItemDataByIDRequest = JSON.stringify({
+    "itemID": sItemID
+  }); 
+  oAppEnablementMasterdataInstance.getItemDataByID("itemData", "registerDataFailed", createGetItemDataByIDRequest);
+  // console.log(itemDataTest);
+  return itemDataTest
+};
 
+//Register line item
 comAppenablementFunctions.Connector.prototype.sendRegisterItem = (sItemID) => {
   console.log(sItemID);
   let registerLineItemRequest = JSON.stringify({
       "itemID": sItemID
   });
   oAppEnablementPosInstance.registerLineItem("registerDataOk", "registerDataFailed", registerLineItemRequest); 
+  return itemDataTest
 }
   function registerDataOk() {
     console.log("Succesfully registered", "success");
@@ -29,13 +43,16 @@ comAppenablementFunctions.Connector.prototype.sendRegisterItem = (sItemID) => {
     console.error("Data registration failed");
   }
 
-
+function itemData(oData) {
+  // console.log(oData);
+  itemDataTest = oData;
+}
 
 
 function dataFound(oData) {
   // console.log("hello world")
   // console.log("O data" + oData)
-  // console.log(oData)
+  console.log(oData)
   if(oData == undefined){
     return
   }else{
@@ -111,3 +128,15 @@ oAppEnablementCommonInstance.registerListener(oAppEnablementCommonInstance.creat
             addEvent("Generic Event: " + oEvent["messageHeader"]["messageKey"]);
     }
 }
+ 
+
+
+// //WEBSOCKET TEST
+
+// let socket = new WebSocket("ws://localhost:9099/services/stomp");
+
+// socket.onopen = function(e) {
+//   alert("[open] Connection established");
+//   socket.send("Test")
+// }
+

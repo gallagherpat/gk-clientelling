@@ -33,15 +33,16 @@ export default function Home() {
                 "status": 'Gold',
                 "points": "300", 
                 'rewards': ['20% off'],
-                "preferences": ['hello', 'world'],
+                "preferences": ['4 Regular', 'Extra Small'],
             }]
         }
   
   return (
     <main className="min-h-screen">
       <CustomerSection/>
-      <Header/>
+      <Header memberName={data?.data[0]?.firstName + " " + data?.data[0]?.lastName}/>
       <div className="flex flex-col">
+        {/* <img src="https://live.emea.gkc4r.com/dsg/services/rest/media/v1/files/Standard_Items/booklet/bookletFashion/300660325.jpg"/> */}
       <Suspense fallback={<div>Loading...</div>}>
         <CustomerCard member={data?.data[0]}/>
       </Suspense>
@@ -49,6 +50,10 @@ export default function Home() {
       <Section name="Recommendations"/>
       <Section name="Past Purchases"/>
       <Section name="Wish List"/>
+      {/* <button onClick={()=>{
+          let oAppFunctions = new comAppenablementFunctions.Connector;
+          oAppFunctions.sendGetItemDataByID(300660325)
+      }}>Get item data test</button> */}
       </div>
     </main>
   )
