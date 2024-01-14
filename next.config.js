@@ -12,7 +12,26 @@ const nextConfig = {
         hostname: 'assets.peterglenn.com',
         port: '',
         pathname: '/**'
-      }]
+      },
+      {
+        protocol: 'https',
+        hostname: '2.bp.blogspot.com',
+        port: '',
+        pathname: '/**'
+      },
+      {
+        protocol: 'https',
+        hostname: 'golfteamproducts.com',
+        port: '',
+        pathname: '/**'
+      },
+      {
+        protocol: 'https',
+        hostname: 'straighttohellapparel.com',
+        port: '',
+        pathname: '/**'
+      }
+    ]
     },
 }
 

@@ -52,8 +52,8 @@ export default function Home() {
       <Section name="Wish List"/>
       {/* <button onClick={()=>{
           let oAppFunctions = new comAppenablementFunctions.Connector;
-          oAppFunctions.sendGetItemDataByID(300660325)
-      }}>Get item data test</button> */}
+          oAppFunctions.sendGetItemImage(300618505)
+      }}>Get item image test</button> */}
       </div>
     </main>
   )

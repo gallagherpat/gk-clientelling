@@ -16,6 +16,7 @@ comAppenablementFunctions.Connector.prototype.ConnectionTest = (sConnection) => 
   return sConnection
 };
 let itemDataTest;
+let itemList;
 //Get master data
 comAppenablementFunctions.Connector.prototype.sendGetItemDataByID = (sItemID) => {
   console.log(sItemID);
@@ -25,6 +26,16 @@ comAppenablementFunctions.Connector.prototype.sendGetItemDataByID = (sItemID) =>
   oAppEnablementMasterdataInstance.getItemDataByID("itemData", "registerDataFailed", createGetItemDataByIDRequest);
   // console.log(itemDataTest);
   return itemDataTest
+};
+
+comAppenablementFunctions.Connector.prototype.sendGetItemDataByIDList = (sItemIDList) => {
+  console.log(sItemIDList);
+  let createGetItemDataByIDRequest = JSON.stringify({
+    "itemIDList": sItemIDList
+  }); 
+  oAppEnablementMasterdataInstance.getItemDataListByIDList("itemDataList", "registerDataFailed", createGetItemDataByIDRequest);
+  // console.log(itemDataTest);
+  return itemList
 };
 
 //Register line item
@@ -42,6 +53,11 @@ comAppenablementFunctions.Connector.prototype.sendRegisterItem = (sItemID) => {
   function registerDataFailed() {
     console.error("Data registration failed");
   }
+
+function itemDataList(oData) {
+  console.log(oData)
+  itemList = oData;
+}
 
 function itemData(oData) {
   // console.log(oData);
@@ -73,8 +89,6 @@ function getCustomerData() {
 function oData() {
     return globalData
 }
-
-
 
 oAppEnablementCommonInstance.registerListener(oAppEnablementCommonInstance.createRegisterListenerRequest("FLOW_EVENT_CUSTOMER_FLOW_PAYMENTEND_TRANSACTION_FINISHED_ENTERED", "processEvent", true));
 
@@ -140,3 +154,23 @@ oAppEnablementCommonInstance.registerListener(oAppEnablementCommonInstance.creat
 //   socket.send("Test")
 // }
 
+
+
+
+
+
+
+//Get images
+comAppenablementFunctions.Connector.prototype.sendGetItemImage = (sItemID) => {
+  console.log(sItemID);
+  let createGetItemDataByIDRequest = JSON.stringify({
+    "itemID": sItemID,
+    "type": "item"
+  }); 
+  oAppEnablementMasterdataInstance.getImageUrl("itemImage", "registerDataFailed", createGetItemDataByIDRequest);
+  // console.log(itemDataTest);
+};
+
+function itemImage(oData) {
+  console.log(oData);
+}

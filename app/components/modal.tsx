@@ -13,7 +13,8 @@ function Modal(props){
         <button onClick={props.setModal}>X</button>
         <Image
             className="w-auto"
-            src="https://assets.peterglenn.com/jpg/1000x1000/75786_SSB_LG.jpg"
+            // src="https://assets.peterglenn.com/jpg/1000x1000/75786_SSB_LG.jpg"
+            src={props.url}
             alt='Placeholder'
             width={200}
             height={200}
@@ -29,7 +30,7 @@ function Modal(props){
             <button className="bg-[#333] mb-1 text-sm h-12 w-32 rounded-full text-white" onClick={()=>{
                   const oAppFunctions = new comAppenablementFunctions.Connector;
                 //oAppFunctions.sendRegisterItem(item.itemID);
-                oAppFunctions.sendRegisterItem(gkItem.key.itemID);
+                oAppFunctions.sendRegisterItem(props.modalKey);
                 //key.itemID
                   pageHandler();
               }}>Add to Cart</button>
