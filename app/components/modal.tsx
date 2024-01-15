@@ -20,9 +20,9 @@ function Modal(props){
             height={200}
         />
         {/* <h2 className="ml-2 text-lg font-bold">{item.receiptText}</h2> */}
-        <h2 className="ml-2 text-lg font-bold">{gkItem.description}</h2>
+        <h2 className="ml-2 text-lg font-bold">{item.description}</h2>
         {/* <Tag tag={item.tag}/> */}
-        <p className="ml-2 text-sm">{item.longDescription} 
+        <p className="ml-2 text-sm">Thank you for choosing GK, we are proud to serve our customers!
         {/* <a className="underline" target="_blank" href={`https://www.lcbo.com/en/${item.url}`}>More Details...</a> */}
         </p>
         <div className="bg-[#333] h-[1px] mx-2 my-4 opacity-20"></div>

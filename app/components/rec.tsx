@@ -55,6 +55,7 @@ function Rec(props){
     const [isIndex, setIndex] = useState(0);
     function modalHandler(id){
         setIndex(id);
+        console.log(id)
         (isModalOpen) ? setModalOpen(!isModalOpen) : setModalOpen(!isModalOpen)
         return isModalOpen
     }
