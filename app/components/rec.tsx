@@ -65,7 +65,11 @@ function Rec(props){
     <div key={index}>
     {/* <div>Hello {gkItems?.assortmentID}</div> */}
         <button className="p-2 bg-white border-2 rounded-md h-72 mix-blend-normal" 
-        onClick={() => {modalHandler(item?.posIdentityList[1].key.posItemId)}}>
+        onClick={() => {
+            //modalHandler(item?.posIdentityList[1].key.posItemId)
+            const oAppFunctions = new comAppenablementFunctions.Connector;
+            oAppFunctions.sendRegisterItem(item?.posIdentityList[0].key.posItemId);
+        }}>
             <Image 
                 className="w-auto" 
                 // src={item.img} 
