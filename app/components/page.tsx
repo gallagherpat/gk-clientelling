@@ -35,8 +35,8 @@ function Page(props){
     }
 
     return (<div className={isAnimated ? className + " animate-slide" : className + " animate-reverseSlide"}>
-        <header className="drop-shadow-lg py-4 bg-white">
-            <h1 className="flex text-xl ml-4">
+        <header className="py-4 bg-white drop-shadow-lg">
+            <h1 className="flex ml-4 text-xl">
                 <button id="backBtn" onClick={pageHandler}>
                     <svg xmlns="http://www.w3.org/2000/svg" height="26" viewBox="0 96 960 960" width="26"><path d="M480 896 160 576l320-320 42 42-248 248h526v60H274l248 248-42 42Z"/></svg>
                 </button>
