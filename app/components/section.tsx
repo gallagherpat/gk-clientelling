@@ -11,7 +11,6 @@ function Section(props){
     }
     let name = props.name;
     if(props.name === 'Wish List'){
-        console.log("Wish list");
         name = "Favorites"
     }
     return (<div className="row-auto mx-4 pt-3 text-xl">

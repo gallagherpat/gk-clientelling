@@ -1,29 +1,24 @@
 //@ts-nocheck
 "use client"
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import Modal from "./modal";
 import Backdrop from "./backDrop";
+
 
 function Rec(props){
     const pageHandler = props.pageHandler;
     const [items, updateItems] = useState([]);
+    const [gkItems, updateGKItems] = useState([]);
+    let data;
+
+    let urls = ["https://golfteamproducts.com/cdn/shop/products/GS4962-01-Front_3qtr.jpg?v=1702059447&width=823", "https://assets.peterglenn.com/jpg/1000x1000/75786_SSB_LG.jpg", "https://straighttohellapparel.com/wp-content/uploads/2019/07/del_bomber_blk_grn_web_7.jpg","https://2.bp.blogspot.com/-3p91GNxbtcM/UAgSHudZlvI/AAAAAAAAAvw/GKVddovVTbc/s1600/Image+10+Pic+1.jpg"]
+
     let USDollar = new Intl.NumberFormat('en-US', {
         style: 'currency',
         currency: 'USD',
     });
-    const prodReq = async function () {
-        const myHeaders = new Headers;
-        myHeaders.append("Content-type", "application/json")
-        const req = await fetch('/api/get/customer/item', {
-            method: 'POST',
-            headers: myHeaders,
-            body: JSON.stringify({customer: 'test'}),
-            redirect: "follow"
-        });
-        const res = await req.json();
-        const data = await res;
-        updateItems(data);
-    }
+
     const dummyReq = async function() {
         let endpoint = props.name.toLowerCase();
         if(endpoint == 'wish list'){
@@ -38,38 +33,65 @@ function Rec(props){
         });  
         const res = await req.json();
         const data = await res;
-        updateItems(data.data);  
-    }
+        updateItems(data.data);
+    };
 
     useEffect(() => {
+        getGKData();
         dummyReq();
     }, [])
+
+    const getGKData = async function () {
+        let oAppFunctions = new comAppenablementFunctions.Connector;
+        data = oAppFunctions.sendGetItemDataByIDList([300415613, 300660325, 300678851, 300618505])
+        console.log(data)
+        updateGKItems(data);
+        // updateGKItems([1])
+        console.log("GK Data")
+        console.log(gkItems);
+    }
 
     const [isModalOpen, setModalOpen] = useState(false);
     const [isIndex, setIndex] = useState(0);
     function modalHandler(id){
-        console.log(id);
         setIndex(id);
+        console.log(id)
         (isModalOpen) ? setModalOpen(!isModalOpen) : setModalOpen(!isModalOpen)
         return isModalOpen
     }
-
-    let cards = items.map((item, index) => (<>
+    //sellingPriceList[0].priceAmount
+    let cards = gkItems?.map((item, index) => (
+        
     <div key={index}>
-        <button className="border-2 rounded-md h-72 p-2 mix-blend-normal bg-white" onClick={() => {modalHandler(item.itemID)}}>
-            <img height={96} width={96} className="mx-auto" src={item.img} alt="" />
-        <h3 className="text-sm text-left font-bold mb-2">{item.receiptText}</h3>
-        <p className="text-xs text-left font-200 indent-1">{item.shortDescription}</p>
-        <div className="h-[1px] bg-gray-300 mx-2 my-2"></div>
-        <p className="text-sm text-left ml-14">{USDollar.format(item.price)}</p>
+    {/* <div>Hello {gkItems?.assortmentID}</div> */}
+        <button className="w-full h-64 p-2 bg-white border-2 rounded-md mix-blend-normal" 
+        onClick={() => {
+            //modalHandler(item?.posIdentityList[1].key.posItemId)
+            const oAppFunctions = new comAppenablementFunctions.Connector;
+            oAppFunctions.sendRegisterItem(item?.posIdentityList[0].key.posItemId);
+        }}>
+            <Image 
+                className="m-auto" 
+                // src={item.img} 
+                // src="https://assets.peterglenn.com/jpg/1000x1000/75786_SSB_LG.jpg"
+                src={urls[index]}
+                alt={`Product Image ${index}`} 
+                height={100} 
+                width={100}/>
+            <h3 className="my-2 text-sm font-bold text-left">{item?.description.length > 20 ? item?.description.substring(0, 20) + "...": item?.description}</h3>
+            {/* <p className="text-xs text-left font-200 indent-1">{item.shortDescription}</p> */}
+            <p className="text-xs text-left font-200 indent-1">{item?.itemCharacteristicList[0].characteristicValueName}</p>
+            <div className="h-[1px] bg-gray-300 mx-2 my-2"></div>
+            <p className="pt-2 mr-2 text-end">{USDollar.format(item?.sellingPriceList[0].priceAmount)}</p>
+            {/* {USDollar.format(item.price)} */}
         </button>
-        <Modal isModalOpen={isModalOpen} modalKey={item.itemID} index={isIndex} item={item} setModal={modalHandler} pageHandler={pageHandler}/>
+        {/* <div>{item?.posIdentityList[1].key.posItemId}</div> */}
+        <Modal isModalOpen={isModalOpen} modalKey={item?.posIdentityList[1].key.posItemId} index={isIndex} item={item} gkItem={gkItems} setModal={modalHandler} pageHandler={pageHandler} url={urls[index]}/>
     </div>
-    </>)
-
-    )
+    ))
+    
     return (
-        <div id="gridHeader" className="grid grid-cols-2 gap-2 mt-2 mx-4">
+        <div id="gridHeader" className="grid grid-cols-1 gap-2 mx-4 mt-2">
             {cards}
             {isModalOpen && <Backdrop setModal={modalHandler}/>}
         </div>
