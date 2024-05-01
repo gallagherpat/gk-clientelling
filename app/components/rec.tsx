@@ -60,7 +60,7 @@ function Rec(props){
         return isModalOpen
     }
     //sellingPriceList[0].priceAmount
-    let cards = gkItems?.map((item, index) => (
+    let cards = items?.map((item, index) => (
         
     <div key={index}>
     {/* <div>Hello {gkItems?.assortmentID}</div> */}
@@ -72,9 +72,9 @@ function Rec(props){
         }}>
             <Image 
                 className="m-auto" 
-                // src={item.img} 
+                src={item.img} 
                 // src="https://assets.peterglenn.com/jpg/1000x1000/75786_SSB_LG.jpg"
-                src={urls[index]}
+                // src={urls[index]}
                 alt={`Product Image ${index}`} 
                 height={100} 
                 width={100}/>
