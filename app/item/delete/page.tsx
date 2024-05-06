@@ -34,11 +34,11 @@ export default function Page(){
     return (<main className="min-h-screen">
       <Header/>
       <form className="ml-4" action={deleteItem} method="post">
-      <h1 className="mb-3 font-bold text-xl">Add a new Item</h1>
+      <h1 className="mb-3 text-xl font-bold">Add a new Item</h1>
       <label className="mr-28" htmlFor="itemID">Item ID:</label>
-        <input className="ml-3 pl-1" type="number" name="itemID" placeholder="123456789"/>
+        <input className="pl-1 ml-3" type="number" name="itemID" placeholder="123456789"/>
         <br />
-      <button type="submit" className="bg-blue-500 py-2 px-3 mt-3 rounded-lg">Submit</button>
+      <button type="submit" className="px-3 py-2 mt-3 bg-blue-500 rounded-lg">Submit</button>
         </form>
     </main>)
     // return (<h1>Hello again</h1>)
