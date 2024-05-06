@@ -73,7 +73,7 @@ function Rec(props){
         <button className="w-11/12 h-64 p-2 ml-4 bg-white border-2 rounded-md mix-blend-normal" 
         onClick={() => {
             //modalHandler(item?.posIdentityList[1].key.posItemId)
-            console.log(item)
+            // console.log(item)
             // const oAppFunctions = new comAppenablementFunctions.Connector;
             // oAppFunctions.sendRegisterItem(item?.posIdentityList[0].key.posItemId);
             const oAppFunctions = new comAppenablementFunctions.Connector;
@@ -81,19 +81,19 @@ function Rec(props){
         }}>
             <Image 
                 className="m-auto" 
-                src={item.img} 
+                src={item?.img} 
                 // src="https://assets.peterglenn.com/jpg/1000x1000/75786_SSB_LG.jpg"
                 // src={urls[index]}
                 alt={`Product Image ${index}`} 
                 height={100} 
                 width={100}/>
             {/* <h3 className="my-2 text-sm font-bold text-left">{item?.description.length > 20 ? item?.description.substring(0, 20) + "...": item?.description}</h3> */}
-            <p className="text-xs text-left font-200 indent-1">{item.receiptText}</p>
-            <p className="text-xs text-left font-200 indent-1">{item.shortDescription}</p>
+            <p className="text-xs text-left font-200 indent-1">{item?.receiptText}</p>
+            <p className="text-xs text-left font-200 indent-1">{item?.shortDescription}</p>
             {/* <p className="text-xs text-left font-200 indent-1">{item?.itemCharacteristicList[0].characteristicValueName}</p> */}
             <div className="h-[1px] bg-gray-300 mx-2 my-2"></div>
             {/* <p className="pt-2 mr-2 text-end">{USDollar.format(item?.sellingPriceList[0].priceAmount)}</p> */}
-            {USDollar.format(item.price)}
+            {USDollar.format(item?.price)}
         </button>
         {/* <div>{item?.posIdentityList[1].key.posItemId}</div> */}
         {/* <Modal isModalOpen={isModalOpen} modalKey={item?.posIdentityList[1].key.posItemId} index={isIndex} item={item} gkItem={gkItems} setModal={modalHandler} pageHandler={pageHandler} url={urls[index]}/> */}
