@@ -59,29 +59,29 @@ export default function Page(){
     return (<main className="min-h-screen">
       <Header/>
       <form className="ml-4" action={newItem} method="post">
-      <h1 className="mb-3 font-bold text-xl">Add a new Item</h1>
+      <h1 className="mb-3 text-xl font-bold">Add a new Item</h1>
       <label className="mr-28" htmlFor="itemID">Item ID:</label>
-        <input className="ml-3 pl-1" type="number" name="itemID" placeholder="123456789"/>
+        <input className="pl-1 ml-3" type="number" name="itemID" placeholder="123456789"/>
         <br />
       <label className="mr-32" htmlFor="price">Price:</label>
-        <input className="ml-3 mt-3 pl-1" type="float" name="price" placeholder="1.99"/>
+        <input className="pl-1 mt-3 ml-3" type="float" name="price" placeholder="1.99"/>
         <br />
       <label className="mr-20" htmlFor="receiptText">Receipt Text:</label>
-        <input className="ml-1 mt-3 pl-1" type="text" name="receiptText" placeholder="coke"/>
+        <input className="pl-1 mt-3 ml-1" type="text" name="receiptText" placeholder="coke"/>
         <br />
       <label className="mr-3" htmlFor="registrationNumber">Registration Number:</label>
-        <input className="ml-3 mt-3 pl-1" type="number" name="registrationNumber" placeholder="123456789"/>
+        <input className="pl-1 mt-3 ml-3" type="number" name="registrationNumber" placeholder="123456789"/>
         <br />
       <label className="mr-8" htmlFor="shortDescription">Short Description:</label>
-        <input className="ml-3 mt-3 pl-1" type="text" name="shortDescription" placeholder="Coke is a delicious beverage"/>
+        <input className="pl-1 mt-3 ml-3" type="text" name="shortDescription" placeholder="Coke is a delicious beverage"/>
         <br />
       <label className="mr-6" htmlFor="longDescription">Long Descriptiond:</label>
-        <input className="ml-3 mt-3 pl-1" type="text" name="longDescription" placeholder="Coke is a delicious beverage"/>
+        <input className="pl-1 mt-3 ml-3" type="text" name="longDescription" placeholder="Coke is a delicious beverage"/>
         <br />
       <label className="mr-16" htmlFor="url">Url to image:</label>
-        <input className="ml-5 mt-3 pl-1" type="text" name="url" placeholder="https://"/>
+        <input className="pl-1 mt-3 ml-5" type="text" name="url" placeholder="https://"/>
         <br />
-      <button type="submit" className="bg-blue-500 py-2 px-3 mt-3 rounded-lg">Submit</button>
+      <button type="submit" className="px-3 py-2 mt-3 bg-blue-500 rounded-lg">Submit</button>
         </form>
     </main>)
     // return (<h1>Hello again</h1>)

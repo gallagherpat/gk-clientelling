@@ -8,9 +8,14 @@ function Page(props){
     const [isAnimated, setAnimation] = useState(true);
     let pageType = props.name;
     let componentType;
-    let className = "absolute top-0 left-0 h-screen w-full rounded-xl bg-gradient-to-b from-[#D6DBDC] to-white";
+
+    //let className= "absolute top-0 left-0 w-full h-screen text-foreground-bg from-transparent to-[214, 219, 220] via-background-end"
+    //let className = "absolute top-0 left-0 h-screen w-full rounded-xl bg-gradient-to-b from-[#D6DBDC] to-transparent";
+    let className = "absolute top-0 left-0 w-full bg-gray-100 rounded-xl"
     if(pageType === "Wish List"){
         pageType = "Favorites"
+    }else if(pageType === "Orders" ||  pageType === "Past Purchases"){
+        className += " h-screen"
     }
     function pageHandler(){
         setAnimation(false);
@@ -44,6 +49,8 @@ function Page(props){
             </h1>
         </header>
         {componentType}
+        <br />
+        <br />
     </div>)
 }
 

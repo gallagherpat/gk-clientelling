@@ -37,18 +37,18 @@ export default function Home() {
     <main className="min-h-screen">
       <Header/>
       <form className="mt-4 ml-4" action={newCustomer} method="post">
-      <h1 className="mb-3 font-bold text-xl">Add a new Customer</h1>
+      <h1 className="mb-3 text-xl font-bold">Add a new Customer</h1>
       <label htmlFor="name">Name:</label>
-        <input className="ml-3 pl-1" type="text" name="name" placeholder="Customer Name"/>
+        <input className="pl-1 ml-3" type="text" name="name" placeholder="Customer Name"/>
         <br />
-      <button type="submit" className="bg-blue-500 py-2 px-3 mt-3 rounded-lg">Submit</button>
+      <button type="submit" className="px-3 py-2 mt-3 bg-blue-500 rounded-lg">Submit</button>
       </form>
       <form className="mt-4 ml-4" action={deleteCustomer} method="post">
-      <h1 className="mb-3 font-bold text-xl">Delete a Customer</h1>
+      <h1 className="mb-3 text-xl font-bold">Delete a Customer</h1>
       <label htmlFor="name">Name:</label>
-        <input className="ml-3 pl-1" type="text" name="name" placeholder="Customer Name"/>
+        <input className="pl-1 ml-3" type="text" name="name" placeholder="Customer Name"/>
         <br />
-      <button type="submit" className="bg-blue-500 py-2 px-3 mt-3 rounded-lg">Submit</button>
+      <button type="submit" className="px-3 py-2 mt-3 bg-blue-500 rounded-lg">Submit</button>
       </form>
     </main>
   )

@@ -62,7 +62,7 @@ function CustomerSection(props) {
         console.log("Dev open");
         setLoad(false)
       }
-    }}  className="absolute z-50 bg-white h-screen w-full"><div className="relative h-full pt-56 w-11/12 mx-auto"><img src={logoPath} alt="Logo"/></div></div> : <div className="hidden">Hide</div>}
+    }}  className="absolute z-50 w-full h-screen bg-white"><div className="relative w-11/12 h-full pt-56 mx-auto"><img src={logoPath} alt="Logo"/></div></div> : <div className="hidden">Hide</div>}
   </>)
 }
 

@@ -19,6 +19,10 @@ function Rec(props){
         currency: 'USD',
     });
 
+    const stringReducer = function(text) {
+        
+    }
+
     const dummyReq = async function() {
         let endpoint = props.name.toLowerCase();
         if(endpoint == 'wish list'){
@@ -34,6 +38,8 @@ function Rec(props){
         const res = await req.json();
         const data = await res;
         updateItems(data.data);
+        console.log("Items I need")
+        console.log(items);
     };
 
     useEffect(() => {
@@ -48,7 +54,7 @@ function Rec(props){
         updateGKItems(data);
         // updateGKItems([1])
         console.log("GK Data")
-        console.log(gkItems);
+        // console.log(gkItems);
     }
 
     const [isModalOpen, setModalOpen] = useState(false);
@@ -64,11 +70,14 @@ function Rec(props){
         
     <div key={index}>
     {/* <div>Hello {gkItems?.assortmentID}</div> */}
-        <button className="w-full h-64 p-2 bg-white border-2 rounded-md mix-blend-normal" 
+        <button className="w-11/12 h-64 p-2 ml-4 bg-white border-2 rounded-md mix-blend-normal" 
         onClick={() => {
             //modalHandler(item?.posIdentityList[1].key.posItemId)
+            console.log(item)
+            // const oAppFunctions = new comAppenablementFunctions.Connector;
+            // oAppFunctions.sendRegisterItem(item?.posIdentityList[0].key.posItemId);
             const oAppFunctions = new comAppenablementFunctions.Connector;
-            oAppFunctions.sendRegisterItem(item?.posIdentityList[0].key.posItemId);
+            oAppFunctions.sendRegisterItem(item?.itemID);
         }}>
             <Image 
                 className="m-auto" 
@@ -78,15 +87,17 @@ function Rec(props){
                 alt={`Product Image ${index}`} 
                 height={100} 
                 width={100}/>
-            <h3 className="my-2 text-sm font-bold text-left">{item?.description.length > 20 ? item?.description.substring(0, 20) + "...": item?.description}</h3>
-            {/* <p className="text-xs text-left font-200 indent-1">{item.shortDescription}</p> */}
-            <p className="text-xs text-left font-200 indent-1">{item?.itemCharacteristicList[0].characteristicValueName}</p>
+            {/* <h3 className="my-2 text-sm font-bold text-left">{item?.description.length > 20 ? item?.description.substring(0, 20) + "...": item?.description}</h3> */}
+            <p className="text-xs text-left font-200 indent-1">{item.receiptText}</p>
+            <p className="text-xs text-left font-200 indent-1">{item.shortDescription}</p>
+            {/* <p className="text-xs text-left font-200 indent-1">{item?.itemCharacteristicList[0].characteristicValueName}</p> */}
             <div className="h-[1px] bg-gray-300 mx-2 my-2"></div>
-            <p className="pt-2 mr-2 text-end">{USDollar.format(item?.sellingPriceList[0].priceAmount)}</p>
-            {/* {USDollar.format(item.price)} */}
+            {/* <p className="pt-2 mr-2 text-end">{USDollar.format(item?.sellingPriceList[0].priceAmount)}</p> */}
+            {USDollar.format(item.price)}
         </button>
         {/* <div>{item?.posIdentityList[1].key.posItemId}</div> */}
-        <Modal isModalOpen={isModalOpen} modalKey={item?.posIdentityList[1].key.posItemId} index={isIndex} item={item} gkItem={gkItems} setModal={modalHandler} pageHandler={pageHandler} url={urls[index]}/>
+        {/* <Modal isModalOpen={isModalOpen} modalKey={item?.posIdentityList[1].key.posItemId} index={isIndex} item={item} gkItem={gkItems} setModal={modalHandler} pageHandler={pageHandler} url={urls[index]}/> */}
+ 
     </div>
     ))
     

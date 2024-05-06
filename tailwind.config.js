@@ -13,6 +13,11 @@ module.exports = {
   // ],
   theme: {
     extend: {
+      colors: {
+        'foreground-bg': '0, 0, 0;',
+        'background-start': '214, 219, 220;',
+        'background-end': '255, 255, 255;'   
+      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
