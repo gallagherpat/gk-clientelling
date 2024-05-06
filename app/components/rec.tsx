@@ -19,9 +19,9 @@ function Rec(props){
         currency: 'USD',
     });
 
-    const stringReducer = function(text) {
+    // const stringReducer = function(text) {
         
-    }
+    // }
 
     const dummyReq = async function() {
         let endpoint = props.name.toLowerCase();
@@ -70,7 +70,7 @@ function Rec(props){
         
     <div key={index}>
     {/* <div>Hello {gkItems?.assortmentID}</div> */}
-        <button className="w-11/12 h-64 p-2 ml-4 bg-white border-2 rounded-md mix-blend-normal" 
+        <button className="w-11/12 h-64 p-2 ml-4 bg-white rounded-md mix-blend-normal" 
         onClick={() => {
             //modalHandler(item?.posIdentityList[1].key.posItemId)
             // console.log(item)

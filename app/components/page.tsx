@@ -14,9 +14,10 @@ function Page(props){
     let className = "absolute top-0 left-0 w-full bg-gray-100 rounded-xl"
     if(pageType === "Wish List"){
         pageType = "Favorites"
-    }else if(pageType === "Orders" ||  pageType === "Past Purchases"){
-        className += " h-screen"
     }
+    // else if(pageType === "Orders" ||  pageType === "Past Purchases"){
+    //     className += " h-screen"
+    // }
     function pageHandler(){
         setAnimation(false);
         setTimeout(props.setPageIsOpen, 275)
