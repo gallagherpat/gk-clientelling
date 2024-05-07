@@ -3,39 +3,41 @@ import { NextResponse } from "next/server";
 export async function GET() {
     const JSON = {
     "data":[
-            {
-                "itemID": 936848,
-                "price": 24.00,
-                "receiptText": "Abouriou Nature Vin De France 2018",
-                "registrationNumber": 9368480000,
-                "shortDescription": "Red - Medium Bodied",
-                "longDescription": "Very rare red Loire grape! Organic and natural. Deep garnet in the glass; lifted tones of small red berries; rustic aromas of red fruit, baking spices are enhanced by grippy tannins.",
-                "img": "/img/936848.jpg",
-                "url": "abouriou-nature-vin-de-france-2018-case-936848",
-                "tag": ""
-            },
-            {
-                "itemID": 557470,
-                "price": 53.95,
-                "receiptText": "Empress 1908 Gin",
-                "registrationNumber": 5574700000,
-                "shortDescription": "Gin",
-                "longDescription": "Empress 1908 Gin's name refers to the landmark Victoria, B.C hotel. The gin is made with eight organic botanicals and a non-GMO corn spirit as the base. ",
-                "img": "/img/557470.jpg",
-                "url": "empress-1908-gin-557470",
-                "tag": ""
-            },
-            {
-                "itemID": 24528,
-                "price": 36.95,
-                "receiptText": "Hounds Black Vodka",
-                "registrationNumber": 245280000,
-                "shortDescription": "Vodka",
-                "longDescription": "Made in a completely natural way, with nothing more than fermented grapes, this malbec has a delicious purity.",
-                "img": "/img/24528.jpg",
-                "url": "hounds-black-vodka-24528",
-                "tag": "ontario"
-            },
+        {
+            "itemID": 8000001,
+            "price": 89.95,
+            "receiptText": "Mount Thunder Polo",
+            "registrationNumber": 219870000,
+            "shortDescription": "",
+            "longDescription": "A modern landmark in the distillery district - the copper columns of the still at the Spirit of York Distillery are revealed by a striking transparent glass tower.",
+            "img": "/img/8000001.png",
+            "url": "spirit-of-york-vodka-541755",
+            "tag": "ontario"
+            
+        },
+        {
+            "itemID": 8000002,
+            "price": 49.95,
+            "receiptText": "Cheers 2.0 Belt",
+            "registrationNumber": 219870000,
+            "shortDescription": "",
+            "longDescription": "Made in a completely natural way, with nothing more than fermented grapes, this malbec has a delicious purity.",
+            "img": "/img/8000002.png",
+            "url": "virgen-natural-malbec-2019-21987",
+            "tag": "organic"
+            
+        },
+        {
+            "itemID": 8000003,
+            "price": 34.95,
+            "receiptText": "Surf Warning Snapback Hat",
+            "registrationNumber": 247570000,
+            "shortDescription": "",
+            "longDescription": "This juicy, bright wine was fermented with wild yeast in stainless steel to preserve the fine fruit tones.",
+            "img": "/img/8000003.png",
+            "url": "benaiga-natural-wine-carignan-24757",
+            "tag": ""
+        }
         ]
         }
 return NextResponse.json(JSON);
