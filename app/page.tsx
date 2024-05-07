@@ -34,7 +34,7 @@ export default function Home() {
                 "status": 'Gold',
                 "points": "300", 
                 'rewards': ['20% off'],
-                "preferences": ['4 Regular', 'Extra Small'],
+                "preferences": ['Large Tops', '32 X 32'],
             }]
         }
   
